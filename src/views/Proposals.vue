@@ -31,10 +31,6 @@
             <span class="ii-name">官方网址</span>
             <a class="ii-link" :href="spaceInfo.website" target="_blank">{{ spaceInfo.website }}</a>
           </p>
-          <!-- <p class="i-item">
-            <span class="ii-name">官方网址</span>
-            <a class="ii-link" href="https://berkshire.finance/#/">https://berkshire.finance/#/</a>
-          </p> -->
           <p class="i-item">
             <span class="ii-name">更多信息</span>
             <section class="ii-share">
@@ -70,26 +66,19 @@
             <span class="ii-name">代币总量</span>
             <span class="ii-text">{{ spaceInfo.totalsupply }}</span>
           </p>
-          <!-- <p class="i-item">
-            <span class="ii-name">特性</span>
-            <span class="ii-text">BFT-ETH矿池双倍奖励</span>
-          </p> -->
           <p class="i-item" v-if="space.address">
             <span class="ii-name">代币合约地址</span>
             <a class="ii-link" :href="space.address">{{ space.address }}</a>
           </p>
-          <p class="i-item">
+          <p class="i-item" v-if="spaceInfo.audit_agency">
             <span class="ii-name">合约审计</span>
             <span class="ii-text">{{ spaceInfo.audit_agency }}</span>
           </p>
-          <p class="i-item">
+          <p class="i-item" v-if="spaceInfo.audit_report">
             <span class="ii-name">审计报告</span>
             <a class="ii-link" target="_blank" :href="spaceInfo.audit_report">{{ spaceInfo.audit_report }}</a>
           </p>
         </section>
-        <!-- <router-link class="setting" :to="{ name: 'project-update', params: { address: $route.params.key } }" target="_blank">
-          <img :src="setting" alt="setting">
-        </router-link> -->
       </section>
 
       <section class="proposals">
@@ -154,11 +143,13 @@
 <script>
 import { mapActions } from 'vuex';
 import { isEmpty } from 'lodash';
-import twitter from '../icons/twitter-white.svg'
-import facebook from '../icons/facebook-white.svg'
-import telegram from '../icons/telegram-white.svg'
-import discord from '../icons/discord-white.svg'
-import help from '../icons/help-white.svg'
+import twitter from '../icons/twitter-white.svg';
+import facebook from '../icons/facebook-white.svg';
+import telegram from '../icons/telegram-white.svg';
+import discord from '../icons/discord-white.svg';
+import medium from '../icons/medium-white.svg';
+import github from '../icons/github-white.svg';
+import help from '../icons/help-white.svg';
 
 export default {
   data() {
@@ -167,6 +158,8 @@ export default {
       facebook: facebook,
       telegram: telegram,
       discord: discord,
+      medium: medium,
+      github: github,
       help: help,
       loading: false,
       loaded: false,
@@ -276,11 +269,13 @@ export default {
   methods: {
     ...mapActions(['getProposals']),
     resourceIcon(key) {
-      if (key === 'twitter') return this.twitter
-      if (key === 'facebook') return this.facebook
-      if (key === 'telegram') return this.telegram
-      if (key === 'discord') return this.discord
-      else return this.help
+      if (key === 'twitter') return this.twitter;
+      if (key === 'facebook') return this.facebook;
+      if (key === 'telegram') return this.telegram;
+      if (key === 'discord') return this.discord;
+      if (key === 'medium') return this.medium;
+      if (key === 'github') return this.github;
+      else return this.help;
     }
   },
   async created() {
@@ -420,6 +415,7 @@ export default {
 }
 .ii-share {
   display: flex;
+  flex-wrap: wrap;
   a {
     display: flex;
     align-items: center;
@@ -528,6 +524,28 @@ export default {
     width: 60%;
     height: 60%;
     object-fit: cover;
+  }
+}
+
+@media screen and (max-width: 750px) {
+  .banner {
+    height: 210px;
+  }
+  .b-logo {
+    margin-top: 10px;
+  }
+  .b-logo img {
+    width: 60px !important;
+    height: 60px !important;
+  }
+  .b-title {
+    font-size: 30px;
+    margin: 0;
+  }
+  .c-head {
+    grid-template-columns: 1fr;
+    grid-column-gap: 14px;
+    grid-row-gap: 14px;
   }
 }
 </style>

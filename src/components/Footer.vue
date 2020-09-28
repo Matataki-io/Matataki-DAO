@@ -10,7 +10,7 @@
         <p class="f-text">&copy;2020 4399DAO</p>
       </div>
       <section class="f-nav">
-        <a class="fn-item" href="#" v-for="(item, idx) in linkItem" :key="idx">
+        <a class="fn-item" href="#" v-for="(item, idx) in linkItem" :key="idx" target="_blank">
           <img :src="item.src" alt="icon" />
         </a>
       </section>
@@ -32,7 +32,7 @@ export default {
         {
           label: '',
           src: twitter
-        },
+        }
       ]
     };
   }
@@ -87,6 +87,26 @@ export default {
       height: 80%;
       object-fit: contain;
       margin: 0 auto;
+    }
+  }
+}
+
+@media screen and (max-width: 750px) {
+  .footer {
+    height: 120px;
+  }
+  .footer-logo {
+    height: 30px;
+  }
+  .f-text {
+    font-size: 12px;
+  }
+  .f-nav .fn-item {
+    width: 30px;
+    height: 30px;
+    img {
+      width: 60%;
+      height: 60%;
     }
   }
 }

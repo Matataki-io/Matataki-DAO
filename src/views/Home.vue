@@ -10,9 +10,6 @@
     </section>
 
     <section class="container">
-      <!-- <router-link class="setting" :to="{ name: 'project-create' }" target="_blank">
-        <img :src="create" alt="setting">
-      </router-link> -->
       <section class="tab-head">
         <p class="th-title">以太坊网络</p>
         <section class="th-line">
@@ -44,33 +41,23 @@
             <section>
               <h4 class="ti-title">{{ space.symbol }}</h4>
               <p class="ti-des">
-                {{ space.name }}
+                {{ spaceInfo[space.key].brief }}
               </p>
               <section class="ti-btn">
                 <div>理财</div>
               </section>
             </section>
             <section class="ti-logo">
-            <Token
-              :space="space.key"
-              symbolIndex="space"
-              size="40"
-              class="mb-3"
-            />
-              <!-- <img v-if="space.logo" :src="`${_ipfsUrl(space.logo)}`" alt="logo" /> -->
+              <Token
+                :space="space.key"
+                symbolIndex="space"
+                size="40"
+                class="mb-3"
+              />
             </section>
           </router-link>
         </section>
       </div>
-      <!-- <el-pagination
-        v-show="projectListResult.count > 10"
-        background
-        layout="prev, pager, next"
-        class="pagination"
-        :total="projectListResult.count"
-        @current-change="currentChange"
-      >
-      </el-pagination> -->
     </section>
     <Footer></Footer>
   </div>
@@ -81,7 +68,7 @@ import { mapActions } from 'vuex';
 import orderBy from 'lodash/orderBy';
 import homepage from '@499dao/snapshot-spaces/spaces/homepage.json';
 import domains from '@499dao/snapshot-spaces/spaces/domains.json';
-import create from '../icons/create.svg'
+import create from '../icons/create.svg';
 
 export default {
   data() {
@@ -108,6 +95,9 @@ export default {
         favorite: !!this.favoriteSpaces.favorites[key]
       }));
       return orderBy(list, ['favorite'], ['desc']);
+    },
+    spaceInfo() {
+      return this.web3.spacesInfo;
     }
   },
   methods: {
@@ -135,7 +125,7 @@ export default {
         pagesize: this.pagesize,
         pageindex: i
       });
-    },
+    }
   },
   created() {
     const domainName = window.location.hostname;
@@ -267,6 +257,11 @@ export default {
   padding: 24px;
   box-sizing: border-box;
   overflow: hidden;
+  transition: all 0.2s;
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 2px 10px 0 rgba(0, 0, 0, 0.02);
+  }
 }
 
 .ti-title {
@@ -279,10 +274,10 @@ export default {
 }
 
 .ti-des {
-  font-size: 20px;
+  font-size: 16px;
   font-weight: 400;
   color: #b2b2b2;
-  line-height: 20px;
+  line-height: 1.3;
   padding: 0;
   margin: 0;
   word-break: break-all;
@@ -333,22 +328,36 @@ export default {
 }
 
 .setting {
-    position: fixed;
-    margin: 0 0 0 -70px;
-    width: 60px;
-    height: 60px;
-    background-color: #fff;
-    color: #646464;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border-radius: 3px;
-    box-shadow: 0 0 10px 0 rgba(0,0,0,.02);
-    cursor: pointer;
-    img {
-          width: 60%;
+  position: fixed;
+  margin: 0 0 0 -70px;
+  width: 60px;
+  height: 60px;
+  background-color: #fff;
+  color: #646464;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 3px;
+  box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.02);
+  cursor: pointer;
+  img {
+    width: 60%;
     height: 60%;
     object-fit: cover;
-    }
+  }
+}
+
+@media screen and (max-width: 750px) {
+  .banner {
+    height: 160px;
+  }
+  .toggle-container {
+    grid-template-columns: 1fr;
+    grid-column-gap: 14px;
+    grid-row-gap: 14px;
+  }
+  .container {
+    width: 100%;
+  }
 }
 </style>

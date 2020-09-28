@@ -29,7 +29,14 @@
         <Icon name="warning" class="ml-n1 mr-1 v-align-middle" />
         Wrong network
       </UiButton>
-      <button v-else class="hb-connect" @click="modalOpen = true" :loading="loading">链接钱包</button>
+      <button
+        v-else
+        class="hb-connect"
+        @click="modalOpen = true"
+        :loading="loading"
+      >
+        链接钱包
+      </button>
       <UiButton @click="modalAboutOpen = true" class="ml-2">
         <span v-text="'?'" class="ml-n1 mr-n1" />
       </UiButton>
@@ -115,7 +122,7 @@ export default {
   line-height: 28px;
   padding: 0;
   margin: 0 0 0 60px;
-  font-family: "Inter var", sans-serif;
+  font-family: 'Inter var', sans-serif;
   font-weight: bold;
 }
 
@@ -139,6 +146,15 @@ export default {
   justify-content: center;
   &:hover {
     background: #269397;
+  }
+}
+
+@media screen and (max-width: 750px) {
+  .hl-logo {
+    height: 24px;
+  }
+  .hl-title {
+    display: none;
   }
 }
 </style>
