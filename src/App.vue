@@ -1,13 +1,13 @@
 <template>
   <div :class="space ? space.key : ''" id="app" class="overflow-hidden">
     <UiLoading v-if="ui.loading || !ui.init" class="overlay big" />
-    <div v-else>
+    <template v-else>
       <!-- <Topnav /> -->
       <!-- <div class="pb-6 overflow-hidden"> -->
         <!-- <router-view :key="$route.path" class="flex-auto" /> -->
       <!-- </div> -->
       <router-view :key="$route.path" />
-    </div>
+    </template>
     <Notifications />
   </div>
 </template>

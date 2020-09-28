@@ -158,11 +158,15 @@ export default {
 <style lang="scss" scoped>
 .home {
   background-color: #eceff6;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
 }
 
 .banner {
   height: 350px;
   text-align: center;
+  background-color: #b6b6b6;
 
   .banner-img {
     max-width: 1920px;
@@ -174,8 +178,8 @@ export default {
 }
 
 .container {
-  max-width: 740px;
-  min-height: 300px;
+  width: 740px;
+  flex: 1;
   padding: 0 10px;
   margin: 0 auto;
   box-sizing: border-box;

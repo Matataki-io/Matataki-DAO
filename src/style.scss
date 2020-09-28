@@ -14,15 +14,20 @@
 }
 
 @font-face {
-  font-family: 'Calibre-Medium';
-  src: url('./assets/fonts/Calibre-Medium.eot');
-  src: url('./assets/fonts/Calibre-Medium.eot?#iefix')
-      format('embedded-opentype'),
-    url('./assets/fonts/Calibre-Medium.woff') format('woff'),
-    url('./assets/fonts/Calibre-Medium.ttf') format('truetype');
-  font-weight: normal;
-  font-style: normal;
+  font-family: 'Inter var';
+  src: url(./assets/fonts/Inter-Var.ttf);
 }
+
+// @font-face {
+//   font-family: 'Calibre-Medium';
+//   src: url('./assets/fonts/Calibre-Medium.eot');
+//   src: url('./assets/fonts/Calibre-Medium.eot?#iefix')
+//       format('embedded-opentype'),
+//     url('./assets/fonts/Calibre-Medium.woff') format('woff'),
+//     url('./assets/fonts/Calibre-Medium.ttf') format('truetype');
+//   font-weight: normal;
+//   font-style: normal;
+// }
 
 @font-face {
   font-family: 'Calibre-Semibold';
@@ -35,6 +40,9 @@
   font-style: normal;
 }
 
+body {
+  // font-family: "Inter var", sans-serif;
+}
 html,
 body,
 #app {

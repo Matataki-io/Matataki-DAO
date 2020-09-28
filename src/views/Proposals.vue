@@ -8,7 +8,7 @@
               :space="space.key"
               symbolIndex="space"
               size="128"
-              class="mb-3"
+              class="mb-3 bl-token"
             />
         <!-- <img v-if="proposalsResult.logo" :src="`${_ipfsUrl(proposalsResult.logo)}`" alt="logo"> -->
       </section>
@@ -38,7 +38,9 @@
           <p class="i-item">
             <span class="ii-name">更多信息</span>
             <section class="ii-share">
-              <a :href="val" v-for="(val, key) in spaceInfo.resource" :key="key">{{ String(key).slice(0, 1) }}</a>
+              <a :href="val" v-for="(val, key) in spaceInfo.resource" :key="key" target="_blank">
+                <img :src="resourceIcon(key)" alt="logo">
+              </a>
             </section>
           </p>
         </section>
@@ -152,10 +154,20 @@
 <script>
 import { mapActions } from 'vuex';
 import { isEmpty } from 'lodash';
+import twitter from '../icons/twitter-white.svg'
+import facebook from '../icons/facebook-white.svg'
+import telegram from '../icons/telegram-white.svg'
+import discord from '../icons/discord-white.svg'
+import help from '../icons/help-white.svg'
 
 export default {
   data() {
     return {
+      twitter: twitter,
+      facebook: facebook,
+      telegram: telegram,
+      discord: discord,
+      help: help,
       loading: false,
       loaded: false,
       proposals: {},
@@ -262,7 +274,14 @@ export default {
     }
   },
   methods: {
-    ...mapActions(['getProposals'])
+    ...mapActions(['getProposals']),
+    resourceIcon(key) {
+      if (key === 'twitter') return this.twitter
+      if (key === 'facebook') return this.facebook
+      if (key === 'telegram') return this.telegram
+      if (key === 'discord') return this.discord
+      else return this.help
+    }
   },
   async created() {
     this.loading = true;
@@ -290,15 +309,9 @@ export default {
   justify-content: center;
 }
 .b-logo {
-  width: 128px;
-  height: 128px;
-  border-radius: 100%;
   margin: 48px auto 0;
-  overflow: hidden;
-  img {
-    widows: 100%;
-    height: 100%;
-    object-fit: cover;
+  .bl-token {
+    border: none !important;
   }
 }
 .b-title {
@@ -419,6 +432,11 @@ export default {
     margin-left: 24px;
     &:nth-child(1) {
       margin-left: 0;
+    }
+    img {
+      width: 60%;
+      height: 60%;
+      object-fit: cover;
     }
   }
 }
