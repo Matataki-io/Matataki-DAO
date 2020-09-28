@@ -2,16 +2,8 @@ const requireSpace = require.context(
   '@499dao/snapshot-spaces/spaces/',
   true,
   // /[\w-]+\.json$/
-  /index\.json$/
+  /info\.json$/
 );
-const requireSkin = require.context(
-  '@499dao/snapshot-spaces/spaces/',
-  true,
-  /[\w-]+\.scss$/
-);
-
-requireSkin.keys().map(file => requireSkin(file));
-
 const spaces = Object.fromEntries(
   requireSpace
     .keys()
@@ -27,11 +19,12 @@ const spaces = Object.fromEntries(
     })
 );
 
-const spacesByChainId = {};
+const spacesInfo = {};
 Object.entries(spaces).forEach((space: any) => {
-  if (!spacesByChainId[space[1].chainId])
-    spacesByChainId[space[1].chainId] = {};
-  spacesByChainId[space[1].chainId][space[0]] = space[1];
+  if (!spacesInfo[1]) {
+    spacesInfo[1] = {};
+  }
+  spacesInfo[1][space[0]] = space[1];
 });
 
-export default spacesByChainId;
+export default spacesInfo;

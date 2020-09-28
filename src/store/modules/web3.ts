@@ -4,6 +4,7 @@ import { Web3Provider } from '@ethersproject/providers';
 import { Contract } from '@ethersproject/contracts';
 import { getAddress } from '@ethersproject/address';
 import spaces from '@/spaces';
+import spacesInfo from '@/spacesInfo';
 import store from '@/store';
 import abi from '@/helpers/abi';
 import config from '@/helpers/config';
@@ -26,6 +27,7 @@ const state = {
   balances: {},
   blockNumber: 0,
   spaces: {},
+  spacesInfo: {},
   network: config.networks['1']
 };
 
@@ -52,6 +54,7 @@ const mutations = {
     providers.setNetwork(chainId);
     Vue.set(_state, 'network', config.networks[chainId]);
     Vue.set(_state, 'spaces', spaces[chainId]);
+    Vue.set(_state, 'spacesInfo', spacesInfo[chainId]);
     console.debug('HANDLE_CHAIN_CHANGED', chainId);
   },
   HANDLE_ACCOUNTS_CHANGED(_state, payload) {

@@ -1,6 +1,97 @@
 <template>
   <div>
-    <Container>
+      <section class="page">
+    <Header></Header>
+    <section class="banner">
+      <section class="b-logo">
+        <Token
+              :space="space.key"
+              symbolIndex="space"
+              size="128"
+              class="mb-3"
+            />
+        <!-- <img v-if="proposalsResult.logo" :src="`${_ipfsUrl(proposalsResult.logo)}`" alt="logo"> -->
+      </section>
+      <span class="b-title">{{ space.symbol }}</span>
+        <span class="b-description">{{ spaceInfo.brief }}</span>
+        <section class="b-tag">
+          <section class="bt-item">理财</section>
+        </section>
+    </section>
+    <section class="container">
+      <section class="c-head">
+        <section class="ch-item">
+          <h3 class="i-title">项目简介</h3>
+          <p class="i-description" :class="decriptionStatus && 'open'" v-text="spaceInfo.intro || '...'"></p>
+          <span class="i-more" @click="decriptionStatus = !decriptionStatus">{{ decriptionStatus ? '收起更多' : '展开更多' }}</span>
+        </section>
+        <section class="ch-item item-link">
+          <h3 class="i-title">相关链接</h3>
+          <p class="i-item" v-if="spaceInfo.website">
+            <span class="ii-name">官方网址</span>
+            <a class="ii-link" :href="spaceInfo.website" target="_blank">{{ spaceInfo.website }}</a>
+          </p>
+          <!-- <p class="i-item">
+            <span class="ii-name">官方网址</span>
+            <a class="ii-link" href="https://berkshire.finance/#/">https://berkshire.finance/#/</a>
+          </p> -->
+          <p class="i-item">
+            <span class="ii-name">更多信息</span>
+            <section class="ii-share">
+              <a :href="val" v-for="(val, key) in spaceInfo.resource" :key="key">{{ String(key).slice(0, 1) }}</a>
+            </section>
+          </p>
+        </section>
+        <section class="ch-item">
+          <h3 class="i-title">挖矿信息</h3>
+          <p class="i-item">
+            <span class="ii-name">挖矿抵押币种</span>
+            <section class="ii-content">
+              <span v-for="(item, idx) in poolAddress" :key="idx" v-text="item" style="margin-right: 20px;"></span>
+            </section>
+          </p>
+          <p class="i-item">
+            <span class="ii-name">挖矿地址</span>
+            <section class="ii-content iic-address" :class="infoStatus && 'open'">
+              <section v-for="(item, idx) in spaceInfo.mining" :key="idx">
+                {{ item.pool }}<br>
+                <a class="ii-link" target="_blank" :href="item.url">{{ item.url }}</a>
+              </section>
+            </section>
+          </p>
+          <span class="i-more" @click="infoStatus = !infoStatus">{{ infoStatus ? '收起更多' : '展开更多' }}</span>
+
+        </section>
+        <section class="ch-item">
+          <h3 class="i-title">项目信息</h3>
+          <p class="i-item" v-if="spaceInfo.totalsupply">
+            <span class="ii-name">代币总量</span>
+            <span class="ii-text">{{ spaceInfo.totalsupply }}</span>
+          </p>
+          <!-- <p class="i-item">
+            <span class="ii-name">特性</span>
+            <span class="ii-text">BFT-ETH矿池双倍奖励</span>
+          </p> -->
+          <p class="i-item" v-if="space.address">
+            <span class="ii-name">代币合约地址</span>
+            <a class="ii-link" :href="space.address">{{ space.address }}</a>
+          </p>
+          <p class="i-item">
+            <span class="ii-name">合约审计</span>
+            <span class="ii-text">{{ spaceInfo.audit_agency }}</span>
+          </p>
+          <p class="i-item">
+            <span class="ii-name">审计报告</span>
+            <a class="ii-link" target="_blank" :href="spaceInfo.audit_report">{{ spaceInfo.audit_report }}</a>
+          </p>
+        </section>
+        <!-- <router-link class="setting" :to="{ name: 'project-update', params: { address: $route.params.key } }" target="_blank">
+          <img :src="setting" alt="setting">
+        </router-link> -->
+      </section>
+
+      <section class="proposals">
+    <Container class="p-head">
       <div class="mb-3 d-flex">
         <div class="flex-auto">
           <div v-text="space.name" />
@@ -16,7 +107,7 @@
         </router-link>
       </div>
     </Container>
-    <Container :slim="true">
+    <Container :slim="true" class="p-content">
       <Block :slim="true">
         <div
           class="px-4 py-3 bg-gray-dark overflow-auto menu-tabs rounded-top-0 rounded-md-top-2"
@@ -50,11 +141,17 @@
         </p>
       </Block>
     </Container>
+
+      </section>
+    </section>
+    <Footer></Footer>
+  </section>
   </div>
 </template>
 
 <script>
 import { mapActions } from 'vuex';
+import { isEmpty } from 'lodash';
 
 export default {
   data() {
@@ -62,7 +159,10 @@ export default {
       loading: false,
       loaded: false,
       proposals: {},
-      selectedState: 'all'
+      proposalsResult: {},
+      selectedState: 'all',
+      decriptionStatus: false,
+      infoStatus: false
     };
   },
   computed: {
@@ -71,6 +171,9 @@ export default {
     },
     space() {
       return this.web3.spaces[this.key];
+    },
+    spaceInfo() {
+      return this.web3.spacesInfo[this.key];
     },
     states() {
       const states = [
@@ -147,6 +250,15 @@ export default {
           })
           .sort((a, b) => b[1].msg.payload.end - a[1].msg.payload.end, 0)
       );
+    },
+    poolAddress() {
+      if (
+        isEmpty(this.spaceInfo.mining) ||
+        this.spaceInfo.mining.length === 0
+      ) {
+        return [];
+      }
+      return this.spaceInfo.mining.map(i => i.pool);
     }
   },
   methods: {
@@ -161,3 +273,243 @@ export default {
   }
 };
 </script>
+
+
+<style lang="scss" scoped>
+.page {
+  background-color: #eceff6;
+  height: 100%;
+}
+.banner {
+  height: 324px;
+  background: #2eafb4;
+  overflow: hidden;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.b-logo {
+  width: 128px;
+  height: 128px;
+  border-radius: 100%;
+  margin: 48px auto 0;
+  overflow: hidden;
+  img {
+    widows: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+}
+.b-title {
+  font-size: 36px;
+  font-weight: 500;
+  color: #ffffff;
+  line-height: 1;
+  padding: 0;
+  margin: 10px 0 0;
+}
+.b-description {
+  font-size: 14px;
+  font-weight: 400;
+  color: #ffffff;
+  line-height: 20px;
+  padding: 0;
+  margin: 0;
+}
+.b-tag {
+  margin: 10px 0 0 0;
+}
+.bt-item {
+  display: inline-block;
+  padding: 4px 11px;
+  background: #e1f5f5;
+  border-radius: 4px;
+  font-size: 12px;
+  font-weight: 500;
+  color: #2eafb4;
+  line-height: 17px;
+  margin: 0 8px;
+}
+
+.container {
+  max-width: 1200px;
+  padding: 0 20px;
+  box-sizing: border-box;
+  margin: 0 auto;
+}
+
+.c-head {
+  display: grid;
+  grid-template-columns: auto 416px;
+  grid-column-gap: 24px;
+  grid-row-gap: 24px;
+  margin: 24px 0;
+}
+.ch-item {
+  background: #ffffff;
+  border-radius: 4px;
+  padding: 24px;
+  box-sizing: border-box;
+}
+.i-title {
+  font-size: 20px;
+  font-weight: 500;
+  color: #333333;
+  line-height: 28px;
+  padding: 0;
+  margin: 0 0 16px 0;
+}
+.i-more {
+  font-size: 16px;
+  font-weight: 400;
+  color: #2eafb4;
+  line-height: 22px;
+  padding: 0;
+  margin: 0;
+  cursor: pointer;
+}
+.i-description {
+  font-size: 16px;
+  font-weight: 400;
+  color: #333333;
+  line-height: 22px;
+  padding: 0;
+  margin: 0;
+  max-height: 110px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  word-break: break-all;
+  &.open {
+    max-height: none;
+  }
+}
+.i-item {
+  display: flex;
+  .ii-name {
+    flex-shrink: 0;
+    font-size: 16px;
+    font-weight: 400;
+    color: #b2b2b2;
+    line-height: 22px;
+    padding: 0;
+    margin: 0 16px 0 0;
+  }
+  .ii-link {
+    font-size: 16px;
+    font-weight: 500;
+    color: #2eafb4;
+    line-height: 22px;
+    padding: 0;
+    margin: 0;
+    word-break: break-all;
+  }
+}
+.ii-share {
+  display: flex;
+  a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+    border-radius: 100%;
+    overflow: hidden;
+    background-color: #2eafb4;
+    margin-left: 24px;
+    &:nth-child(1) {
+      margin-left: 0;
+    }
+  }
+}
+
+.iic-address {
+  max-height: 110px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  &.open {
+    max-height: none;
+  }
+}
+
+.ii-content,
+.ii-text {
+  font-size: 16px;
+  font-weight: 400;
+  color: #333333;
+  line-height: 22px;
+  padding: 0;
+  margin: 0;
+}
+
+.item-link {
+  .i-item {
+    align-items: center;
+  }
+}
+
+.proposals {
+  background: #ffffff;
+  border-radius: 4px;
+  margin-bottom: 60px;
+  padding: 24px;
+  box-sizing: border-box;
+}
+.p-title {
+  font-size: 20px;
+  font-weight: 500;
+  color: #333333;
+  line-height: 28px;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  align-items: center;
+  .p-len {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 20px;
+    height: 20px;
+    border-radius: 100%;
+    overflow: hidden;
+    background: #b2b2b2;
+    font-size: 12px;
+    font-weight: 500;
+    color: #ffffff;
+    line-height: 17px;
+    margin-left: 8px;
+  }
+}
+
+.p-head {
+  padding: 0 !important;
+  max-width: inherit;
+}
+.p-content {
+  padding: 0 !important;
+  margin-top: 20px;
+  max-width: inherit;
+}
+.p-bc {
+  background-color: #f7f7f7;
+}
+
+.setting {
+  position: fixed;
+  margin: 0 0 0 -70px;
+  width: 60px;
+  height: 60px;
+  background-color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 3px;
+  box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.02);
+  cursor: pointer;
+  img {
+    width: 60%;
+    height: 60%;
+    object-fit: cover;
+  }
+}
+</style>
