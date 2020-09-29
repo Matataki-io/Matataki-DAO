@@ -105,7 +105,6 @@ export default {
       'loadFavoriteSpaces',
       'addFavoriteSpace',
       'removeFavoriteSpace',
-      'getProjectList'
     ]),
     toggleFavorite(spaceId) {
       if (this.favoriteSpaces.favorites[spaceId]) {
@@ -114,18 +113,6 @@ export default {
         this.addFavoriteSpace(spaceId);
       }
     },
-    async projectList(params) {
-      const result = await this.getProjectList(params);
-      this.toggleItem[0].item = result.list;
-      this.projectListResult = result;
-    },
-    currentChange(i) {
-      console.log('i', i);
-      this.projectList({
-        pagesize: this.pagesize,
-        pageindex: i
-      });
-    }
   },
   created() {
     const domainName = window.location.hostname;
@@ -137,10 +124,6 @@ export default {
         }
       });
     this.loadFavoriteSpaces();
-    // this.projectList({
-    //   pagesize: this.pagesize,
-    //   pageindex: this.pageindex
-    // });
   }
 };
 </script>

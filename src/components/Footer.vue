@@ -7,10 +7,15 @@
           alt="footer"
           class="footer-logo"
         />
-        <p class="f-text">&copy;2020 4399DAO</p>
+        <p class="f-text">&copy;2020 499DAO</p>
       </div>
       <section class="f-nav">
-        <a class="fn-item" href="#" v-for="(item, idx) in linkItem" :key="idx" target="_blank">
+        <a
+          class="fn-item"
+          href="#"
+          v-for="(item, idx) in linkItem"
+          :key="idx"
+          target="_blank">
           <img :src="item.src" alt="icon" />
         </a>
       </section>

@@ -1,142 +1,141 @@
 <template>
   <div>
-      <section class="page">
-    <Header></Header>
-    <section class="banner">
-      <section class="b-logo">
-        <Token
-              :space="space.key"
-              symbolIndex="space"
-              size="128"
-              class="mb-3 bl-token"
-            />
-        <!-- <img v-if="proposalsResult.logo" :src="`${_ipfsUrl(proposalsResult.logo)}`" alt="logo"> -->
+    <section class="page">
+      <Header></Header>
+      <section class="banner">
+        <section class="b-logo">
+          <Token
+            :space="space.key"
+            symbolIndex="space"
+            size="128"
+            class="mb-3 bl-token"
+          />
+        </section>
+        <span class="b-title">{{ space.symbol }}</span>
+          <span class="b-description">{{ spaceInfo.brief }}</span>
+          <section class="b-tag">
+            <section class="bt-item">理财</section>
+          </section>
       </section>
-      <span class="b-title">{{ space.symbol }}</span>
-        <span class="b-description">{{ spaceInfo.brief }}</span>
-        <section class="b-tag">
-          <section class="bt-item">理财</section>
-        </section>
-    </section>
-    <section class="container">
-      <section class="c-head">
-        <section class="ch-item">
-          <h3 class="i-title">项目简介</h3>
-          <p class="i-description" :class="decriptionStatus && 'open'" v-text="spaceInfo.intro || '...'"></p>
-          <span class="i-more" @click="decriptionStatus = !decriptionStatus">{{ decriptionStatus ? '收起更多' : '展开更多' }}</span>
-        </section>
-        <section class="ch-item item-link">
-          <h3 class="i-title">相关链接</h3>
-          <p class="i-item" v-if="spaceInfo.website">
-            <span class="ii-name">官方网址</span>
-            <a class="ii-link" :href="spaceInfo.website" target="_blank">{{ spaceInfo.website }}</a>
-          </p>
-          <p class="i-item">
-            <span class="ii-name">更多信息</span>
-            <section class="ii-share">
-              <a :href="val" v-for="(val, key) in spaceInfo.resource" :key="key" target="_blank">
-                <img :src="resourceIcon(key)" alt="logo">
-              </a>
-            </section>
-          </p>
-        </section>
-        <section class="ch-item">
-          <h3 class="i-title">挖矿信息</h3>
-          <p class="i-item">
-            <span class="ii-name">挖矿抵押币种</span>
-            <section class="ii-content">
-              <span v-for="(item, idx) in poolAddress" :key="idx" v-text="item" style="margin-right: 20px;"></span>
-            </section>
-          </p>
-          <p class="i-item">
-            <span class="ii-name">挖矿地址</span>
-            <section class="ii-content iic-address" :class="infoStatus && 'open'">
-              <section v-for="(item, idx) in spaceInfo.mining" :key="idx">
-                {{ item.pool }}<br>
-                <a class="ii-link" target="_blank" :href="item.url">{{ item.url }}</a>
+      <section class="container">
+        <section class="c-head">
+          <section class="ch-item">
+            <h3 class="i-title">项目简介</h3>
+            <p class="i-description" :class="decriptionStatus && 'open'" v-text="spaceInfo.intro || '...'"></p>
+            <span class="i-more" @click="decriptionStatus = !decriptionStatus">{{ decriptionStatus ? '收起更多' : '展开更多' }}</span>
+          </section>
+          <section class="ch-item item-link">
+            <h3 class="i-title">相关链接</h3>
+            <p class="i-item" v-if="spaceInfo.website">
+              <span class="ii-name">官方网址</span>
+              <a class="ii-link" :href="spaceInfo.website" target="_blank">{{ spaceInfo.website }}</a>
+            </p>
+            <p class="i-item">
+              <span class="ii-name">更多信息</span>
+              <section class="ii-share">
+                <a :href="val" v-for="(val, key) in spaceInfo.resource" :key="key" target="_blank">
+                  <img :src="resourceIcon(key)" alt="logo">
+                </a>
               </section>
-            </section>
-          </p>
-          <span class="i-more" @click="infoStatus = !infoStatus">{{ infoStatus ? '收起更多' : '展开更多' }}</span>
+            </p>
+          </section>
+          <section class="ch-item">
+            <h3 class="i-title">挖矿信息</h3>
+            <p class="i-item">
+              <span class="ii-name">挖矿抵押币种</span>
+              <section class="ii-content">
+                <span v-for="(item, idx) in poolAddress" :key="idx" v-text="item" style="margin-right: 20px;"></span>
+              </section>
+            </p>
+            <p class="i-item">
+              <span class="ii-name">挖矿地址</span>
+              <section class="ii-content iic-address" :class="infoStatus && 'open'">
+                <section v-for="(item, idx) in spaceInfo.mining" :key="idx">
+                  {{ item.pool }}<br>
+                  <a class="ii-link" target="_blank" :href="item.url">{{ item.url }}</a>
+                </section>
+              </section>
+            </p>
+            <span class="i-more" @click="infoStatus = !infoStatus">{{ infoStatus ? '收起更多' : '展开更多' }}</span>
 
+          </section>
+          <section class="ch-item">
+            <h3 class="i-title">项目信息</h3>
+            <p class="i-item" v-if="spaceInfo.totalsupply">
+              <span class="ii-name">代币总量</span>
+              <span class="ii-text">{{ spaceInfo.totalsupply }}</span>
+            </p>
+            <p class="i-item" v-if="space.address">
+              <span class="ii-name">代币合约地址</span>
+              <a class="ii-link" :href="space.address">{{ space.address }}</a>
+            </p>
+            <p class="i-item" v-if="spaceInfo.audit_agency">
+              <span class="ii-name">合约审计</span>
+              <span class="ii-text">{{ spaceInfo.audit_agency }}</span>
+            </p>
+            <p class="i-item" v-if="spaceInfo.audit_report">
+              <span class="ii-name">审计报告</span>
+              <a class="ii-link" target="_blank" :href="spaceInfo.audit_report">{{ spaceInfo.audit_report }}</a>
+            </p>
+          </section>
         </section>
-        <section class="ch-item">
-          <h3 class="i-title">项目信息</h3>
-          <p class="i-item" v-if="spaceInfo.totalsupply">
-            <span class="ii-name">代币总量</span>
-            <span class="ii-text">{{ spaceInfo.totalsupply }}</span>
-          </p>
-          <p class="i-item" v-if="space.address">
-            <span class="ii-name">代币合约地址</span>
-            <a class="ii-link" :href="space.address">{{ space.address }}</a>
-          </p>
-          <p class="i-item" v-if="spaceInfo.audit_agency">
-            <span class="ii-name">合约审计</span>
-            <span class="ii-text">{{ spaceInfo.audit_agency }}</span>
-          </p>
-          <p class="i-item" v-if="spaceInfo.audit_report">
-            <span class="ii-name">审计报告</span>
-            <a class="ii-link" target="_blank" :href="spaceInfo.audit_report">{{ spaceInfo.audit_report }}</a>
-          </p>
-        </section>
-      </section>
 
-      <section class="proposals">
-    <Container class="p-head">
-      <div class="mb-3 d-flex">
-        <div class="flex-auto">
-          <div v-text="space.name" />
-          <div class="d-flex flex-items-center flex-auto">
-            <h2 class="mr-2">
-              Proposals
-              <UiCounter :counter="totalProposals" class="ml-1" />
-            </h2>
+        <section class="proposals">
+      <Container class="p-head">
+        <div class="mb-3 d-flex">
+          <div class="flex-auto">
+            <div v-text="space.name" />
+            <div class="d-flex flex-items-center flex-auto">
+              <h2 class="mr-2">
+                Proposals
+                <UiCounter :counter="totalProposals" class="ml-1" />
+              </h2>
+            </div>
           </div>
+          <router-link v-if="$auth.isAuthenticated" :to="{ name: 'create' }">
+            <UiButton>New proposal</UiButton>
+          </router-link>
         </div>
-        <router-link v-if="$auth.isAuthenticated" :to="{ name: 'create' }">
-          <UiButton>New proposal</UiButton>
-        </router-link>
-      </div>
-    </Container>
-    <Container :slim="true" class="p-content">
-      <Block :slim="true">
-        <div
-          class="px-4 py-3 bg-gray-dark overflow-auto menu-tabs rounded-top-0 rounded-md-top-2"
-        >
-          <router-link
-            v-for="state in states"
-            :key="state"
-            v-text="state"
-            :to="`/${key}/${state}`"
-            :class="selectedState === state && 'text-white'"
-            class="mr-3 text-gray tab"
-          />
-        </div>
-        <RowLoading v-if="loading" />
-        <div v-if="loaded">
-          <RowProposal
-            v-for="(proposal, i) in proposalsWithFilter"
-            :key="i"
-            :proposal="proposal"
-            :space="space"
-            :token="key"
-            :verified="space.verified"
-            :i="i"
-          />
-        </div>
-        <p
-          v-if="loaded && Object.keys(proposalsWithFilter).length === 0"
-          class="p-4 m-0 border-top d-block"
-        >
-          There aren't any proposals here yet!
-        </p>
-      </Block>
-    </Container>
+      </Container>
+      <Container :slim="true" class="p-content">
+        <Block :slim="true">
+          <div
+            class="px-4 py-3 bg-gray-dark overflow-auto menu-tabs rounded-top-0 rounded-md-top-2"
+          >
+            <router-link
+              v-for="state in states"
+              :key="state"
+              v-text="state"
+              :to="`/${key}/${state}`"
+              :class="selectedState === state && 'text-white'"
+              class="mr-3 text-gray tab"
+            />
+          </div>
+          <RowLoading v-if="loading" />
+          <div v-if="loaded">
+            <RowProposal
+              v-for="(proposal, i) in proposalsWithFilter"
+              :key="i"
+              :proposal="proposal"
+              :space="space"
+              :token="key"
+              :verified="space.verified"
+              :i="i"
+            />
+          </div>
+          <p
+            v-if="loaded && Object.keys(proposalsWithFilter).length === 0"
+            class="p-4 m-0 border-top d-block"
+          >
+            There aren't any proposals here yet!
+          </p>
+        </Block>
+      </Container>
 
+        </section>
       </section>
+      <Footer></Footer>
     </section>
-    <Footer></Footer>
-  </section>
   </div>
 </template>
 
