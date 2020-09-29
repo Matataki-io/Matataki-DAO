@@ -26,5 +26,12 @@
   "addChoice": "Add choice",
   "selectStartDate": "Select start date",
   "selectEndDate": "Select end date",
-  "publish": "Publish"
+  "publish": "Publish",
+  "castYourVote": "Cast your vote",
+  "vote": "Vote",
+  "token": "Token(s)",
+  "author": "Author",
+  "startDate": "Start date",
+  "endDate": "End date",
+  "snapshot": "Snapshot"
 }

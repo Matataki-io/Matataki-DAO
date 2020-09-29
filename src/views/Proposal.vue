@@ -37,7 +37,7 @@
           <Block
             v-if="loaded && ts >= payload.start && ts < payload.end"
             class="mb-4"
-            title="Cast your vote"
+            title="{{$t('castYourVote')}}"
           >
             <div class="mb-3">
               <UiButton
@@ -55,7 +55,7 @@
               @click="modalOpen = true"
               class="d-block width-full button--submit"
             >
-              Vote
+              {{$t('vote')}}
             </UiButton>
           </Block>
           <BlockVotes
@@ -68,7 +68,7 @@
         <div v-if="loaded" class="col-12 col-lg-4 float-left">
           <Block title="Informations">
             <div class="mb-1 overflow-hidden">
-              <b>Token(s)</b>
+              <b>{{$t('token')}}</b>
               <span class="float-right text-white">
                 <span v-for="(symbol, symbolIndex) of symbols" :key="symbol">
                   <Token :space="space.key" :symbolIndex="symbolIndex" />
@@ -82,7 +82,7 @@
               </span>
             </div>
             <div class="mb-1">
-              <b>Author</b>
+              <b>{{$t('author')}}</b>
               <User
                 :address="proposal.address"
                 :space="space"
@@ -102,7 +102,7 @@
             </div>
             <div>
               <div class="mb-1">
-                <b>Start date</b>
+                <b>{{$t('startDate')}}</b>
                 <span
                   :aria-label="_ms(payload.start)"
                   v-text="$d(payload.start * 1e3, 'short')"
@@ -110,7 +110,7 @@
                 />
               </div>
               <div class="mb-1">
-                <b>End date</b>
+                <b>{{$t('endDate')}}</b>
                 <span
                   :aria-label="_ms(payload.end)"
                   v-text="$d(payload.end * 1e3, 'short')"
@@ -118,7 +118,7 @@
                 />
               </div>
               <div class="mb-1">
-                <b>Snapshot</b>
+                <b>{{$t('snapshot')}}</b>
                 <a
                   :href="_explorer(payload.snapshot, 'block')"
                   target="_blank"

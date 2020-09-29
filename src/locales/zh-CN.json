@@ -23,5 +23,15 @@
   "newProposal": "新提案",
   "thereArentAnyProposalsHereYet": "这里还没有任何建议！",
   "preview": "预习",
-  "addChoice": "添加选择"
+  "addChoice": "添加选择",
+  "token": "代币",
+  "author": "作者",
+  "castYourVote": "投你的票",
+  "endDate": "结束日期",
+  "publish": "发布",
+  "selectEndDate": "选择结束日期",
+  "selectStartDate": "选择开始日期",
+  "snapshot": "快照",
+  "startDate": "开始日期",
+  "vote": "投票"
 }
