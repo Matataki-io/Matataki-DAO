@@ -78,7 +78,7 @@ export default {
       toggleItemActive: 0,
       toggleItem: [
         {
-          label: "this.$t('all')",
+          label: this.$t('all'),
           labelItem: [],
           item: []
         }

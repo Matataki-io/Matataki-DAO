@@ -37,7 +37,7 @@
           <Block
             v-if="loaded && ts >= payload.start && ts < payload.end"
             class="mb-4"
-            title="{{$t('castYourVote')}}"
+            :title="$t('castYourVote')"
           >
             <div class="mb-3">
               <UiButton
