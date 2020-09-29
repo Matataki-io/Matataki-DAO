@@ -87,7 +87,7 @@
             <div v-text="space.name" />
             <div class="d-flex flex-items-center flex-auto">
               <h2 class="mr-2">
-                {{$t('proposal', 1)}}
+                {{$tc('proposal', 2)}}
                 <UiCounter :counter="totalProposals" class="ml-1" />
               </h2>
             </div>

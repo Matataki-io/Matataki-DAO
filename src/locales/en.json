@@ -13,7 +13,7 @@
   "miningMortgageCurrency": "Mining mortgage currency",
   "miningAddress": "Mining address",
   "putMore": "Put more",
-  "proposal": "Proposal ｜ Proposals",
+  "proposal": "Proposal | Proposals",
   "newProposal": "New proposal",
   "thereArentAnyProposalsHereYet": "There aren't any proposals here yet!",
   "auditReport": "Audit Report",
@@ -21,5 +21,10 @@
   "expandMore": "Expand More",
   "projectInformation": "Project information",
   "tokenContractAddress": "Token contract address",
-  "totalTokens": "Total tokens"
+  "totalTokens": "Total tokens",
+  "preview": "Preview",
+  "addChoice": "Add choice",
+  "selectStartDate": "Select start date",
+  "selectEndDate": "Select end date",
+  "publish": "Publish"
 }

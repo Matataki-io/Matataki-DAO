@@ -21,5 +21,7 @@
   "auditReport": "审计报告",
   "proposal": "提案",
   "newProposal": "新提案",
-  "thereArentAnyProposalsHereYet": "这里还没有任何建议！"
+  "thereArentAnyProposalsHereYet": "这里还没有任何建议！",
+  "preview": "预习",
+  "addChoice": "添加选择"
 }
