@@ -1,0 +1,10 @@
+{
+  "Header": {
+    "projectList": "Project list",
+    "wrongNetwork": "Wrong network",
+    "connectWallet": "Link wallet"
+  },
+  "Home": {
+    "ethereumNetwork": "Ethereum network"
+  }
+}

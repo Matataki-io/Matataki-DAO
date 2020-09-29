@@ -1,0 +1,10 @@
+{
+  "Header": {
+    "projectList": "项目列表",
+    "wrongNetwork": "网络错误",
+    "connectWallet": "链接钱包"
+  },
+  "Home": {
+    "ethereumNetwork": "以太坊网络"
+  }
+}

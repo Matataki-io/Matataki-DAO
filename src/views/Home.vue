@@ -11,7 +11,7 @@
 
     <section class="container">
       <section class="tab-head">
-        <p class="th-title">以太坊网络</p>
+        <p class="th-title">{{ $t('Home.ethereumNetwork') }}</p>
         <section class="th-line">
           <section class="thl-active"></section>
         </section>

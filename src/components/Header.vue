@@ -4,7 +4,7 @@
       <router-link :to="{ name: 'home' }">
         <img src="@/assets/image/logo.svg" alt="logo" class="hl-logo" />
       </router-link>
-      <h2 class="hl-title">项目列表</h2>
+      <h2 class="hl-title">{{ $t('Header.projectList') }}</h2>
     </div>
     <div class="h-btn">
       <template v-if="$auth.isAuthenticated && !wrongNetwork">
@@ -27,7 +27,7 @@
         class="text-red"
       >
         <Icon name="warning" class="ml-n1 mr-1 v-align-middle" />
-        Wrong network
+        {{ $t('Header.wrongNetwork') }}
       </UiButton>
       <button
         v-else
@@ -35,7 +35,7 @@
         @click="modalOpen = true"
         :loading="loading"
       >
-        链接钱包
+        {{ $t('Header.connectWallet') }}
       </button>
       <UiButton @click="modalAboutOpen = true" class="ml-2">
         <span v-text="'?'" class="ml-n1 mr-n1" />

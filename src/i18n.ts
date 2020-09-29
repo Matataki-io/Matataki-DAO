@@ -1,19 +1,22 @@
 import Vue from 'vue';
 import VueI18n from 'vue-i18n';
 
+import zhCN from './locales/zh-CN'
+import en from './locales/en'
+
 Vue.use(VueI18n);
 
-const locale = 'en-US';
+// const locale = 'en-US';
+const locale = 'zh-CN'
+
+const messages = {
+  'zh-CN': zhCN,
+  en: en
+}
 
 export default new VueI18n({
   locale,
-  messages: {
-    en: {
-      messages: {
-        EMPTY_STATE: 'No results found'
-      }
-    }
-  },
+  messages: messages,
   numberFormats: {
     en: {
       currency: {
