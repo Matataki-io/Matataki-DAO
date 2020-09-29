@@ -14,24 +14,24 @@
         <span class="b-title">{{ space.symbol }}</span>
           <span class="b-description">{{ spaceInfo.brief }}</span>
           <section class="b-tag">
-            <section class="bt-item">理财</section>
+            <section class="bt-item">{{ $t('financialManagement') }}</section>
           </section>
       </section>
       <section class="container">
         <section class="c-head">
           <section class="ch-item">
-            <h3 class="i-title">项目简介</h3>
+            <h3 class="i-title">{{$t('projectDescription')}}</h3>
             <p class="i-description" :class="decriptionStatus && 'open'" v-text="spaceInfo.intro || '...'"></p>
-            <span class="i-more" @click="decriptionStatus = !decriptionStatus">{{ decriptionStatus ? '收起更多' : '展开更多' }}</span>
+            <span class="i-more" @click="decriptionStatus = !decriptionStatus">{{ decriptionStatus ? $t('putMore') : $t('expandMore') }}</span>
           </section>
           <section class="ch-item item-link">
-            <h3 class="i-title">相关链接</h3>
+            <h3 class="i-title">{{$t('relatedLinks')}}</h3>
             <p class="i-item" v-if="spaceInfo.website">
-              <span class="ii-name">官方网址</span>
+              <span class="ii-name">{{$t('officialWebsite')}}</span>
               <a class="ii-link" :href="spaceInfo.website" target="_blank">{{ spaceInfo.website }}</a>
             </p>
             <p class="i-item">
-              <span class="ii-name">更多信息</span>
+              <span class="ii-name">{{$t('moreInformation')}}</span>
               <section class="ii-share">
                 <a :href="val" v-for="(val, key) in spaceInfo.resource" :key="key" target="_blank">
                   <img :src="resourceIcon(key)" alt="logo">
@@ -40,15 +40,15 @@
             </p>
           </section>
           <section class="ch-item">
-            <h3 class="i-title">挖矿信息</h3>
+            <h3 class="i-title">{{$t('miningInformation')}}</h3>
             <p class="i-item">
-              <span class="ii-name">挖矿抵押币种</span>
+              <span class="ii-name">{{$t('miningMortgageCurrency')}}</span>
               <section class="ii-content">
                 <span v-for="(item, idx) in poolAddress" :key="idx" v-text="item" style="margin-right: 20px;"></span>
               </section>
             </p>
             <p class="i-item">
-              <span class="ii-name">挖矿地址</span>
+              <span class="ii-name">{{$t('miningAddress')}}</span>
               <section class="ii-content iic-address" :class="infoStatus && 'open'">
                 <section v-for="(item, idx) in spaceInfo.mining" :key="idx">
                   {{ item.pool }}<br>
@@ -56,25 +56,25 @@
                 </section>
               </section>
             </p>
-            <span class="i-more" @click="infoStatus = !infoStatus">{{ infoStatus ? '收起更多' : '展开更多' }}</span>
+            <span class="i-more" @click="infoStatus = !infoStatus">{{ infoStatus ? $t('putMore') : $t('expandMore') }}</span>
 
           </section>
           <section class="ch-item">
-            <h3 class="i-title">项目信息</h3>
+            <h3 class="i-title">{{$t('projectInformation')}}</h3>
             <p class="i-item" v-if="spaceInfo.totalsupply">
-              <span class="ii-name">代币总量</span>
+              <span class="ii-name">{{$t('totalTokens')}}</span>
               <span class="ii-text">{{ spaceInfo.totalsupply }}</span>
             </p>
             <p class="i-item" v-if="space.address">
-              <span class="ii-name">代币合约地址</span>
+              <span class="ii-name">{{$t('tokenContractAddress')}}</span>
               <a class="ii-link" :href="space.address">{{ space.address }}</a>
             </p>
             <p class="i-item" v-if="spaceInfo.audit_agency">
-              <span class="ii-name">合约审计</span>
+              <span class="ii-name">{{$t('contractAudit')}}</span>
               <span class="ii-text">{{ spaceInfo.audit_agency }}</span>
             </p>
             <p class="i-item" v-if="spaceInfo.audit_report">
-              <span class="ii-name">审计报告</span>
+              <span class="ii-name">{{$t('auditReport')}}</span>
               <a class="ii-link" target="_blank" :href="spaceInfo.audit_report">{{ spaceInfo.audit_report }}</a>
             </p>
           </section>
@@ -87,13 +87,13 @@
             <div v-text="space.name" />
             <div class="d-flex flex-items-center flex-auto">
               <h2 class="mr-2">
-                Proposals
+                {{$t('proposal', 1)}}
                 <UiCounter :counter="totalProposals" class="ml-1" />
               </h2>
             </div>
           </div>
           <router-link v-if="$auth.isAuthenticated" :to="{ name: 'create' }">
-            <UiButton>New proposal</UiButton>
+            <UiButton>{{$t('newProposal')}}</UiButton>
           </router-link>
         </div>
       </Container>
@@ -127,7 +127,7 @@
             v-if="loaded && Object.keys(proposalsWithFilter).length === 0"
             class="p-4 m-0 border-top d-block"
           >
-            There aren't any proposals here yet!
+            {{$t('thereArentAnyProposalsHereYet')}}
           </p>
         </Block>
       </Container>

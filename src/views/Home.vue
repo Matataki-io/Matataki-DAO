@@ -11,7 +11,7 @@
 
     <section class="container">
       <section class="tab-head">
-        <p class="th-title">{{ $t('Home.ethereumNetwork') }}</p>
+        <p class="th-title">{{ $t('ethereumNetwork') }}</p>
         <section class="th-line">
           <section class="thl-active"></section>
         </section>
@@ -44,7 +44,7 @@
                 {{ spaceInfo[space.key].brief }}
               </p>
               <section class="ti-btn">
-                <div>理财</div>
+                <div>{{$t('financialManagement')}}</div>
               </section>
             </section>
             <section class="ti-logo">
@@ -78,7 +78,7 @@ export default {
       toggleItemActive: 0,
       toggleItem: [
         {
-          label: '全部',
+          label: "this.$t('all')",
           labelItem: [],
           item: []
         }

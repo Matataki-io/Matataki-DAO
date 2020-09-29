@@ -1,10 +1,25 @@
 {
-  "Header": {
-    "projectList": "Project list",
-    "wrongNetwork": "Wrong network",
-    "connectWallet": "Link wallet"
-  },
-  "Home": {
-    "ethereumNetwork": "Ethereum network"
-  }
+  "financialManagement": "Financial management",
+  "ethereumNetwork": "Ethereum network",
+  "connectWallet": "Link wallet",
+  "projectList": "Project list",
+  "wrongNetwork": "Wrong network",
+  "all": "All",
+  "projectDescription": "Project Description",
+  "relatedLinks": "Related Links",
+  "officialWebsite": "official website",
+  "moreInformation": "More information",
+  "miningInformation": "Mining information",
+  "miningMortgageCurrency": "Mining mortgage currency",
+  "miningAddress": "Mining address",
+  "putMore": "Put more",
+  "proposal": "Proposal ｜ Proposals",
+  "newProposal": "New proposal",
+  "thereArentAnyProposalsHereYet": "There aren't any proposals here yet!",
+  "auditReport": "Audit Report",
+  "contractAudit": "Contract audit",
+  "expandMore": "Expand More",
+  "projectInformation": "Project information",
+  "tokenContractAddress": "Token contract address",
+  "totalTokens": "Total tokens"
 }

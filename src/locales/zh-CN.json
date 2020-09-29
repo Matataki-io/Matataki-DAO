@@ -1,10 +1,25 @@
 {
-  "Header": {
-    "projectList": "项目列表",
-    "wrongNetwork": "网络错误",
-    "connectWallet": "链接钱包"
-  },
-  "Home": {
-    "ethereumNetwork": "以太坊网络"
-  }
+  "financialManagement": "理财",
+  "ethereumNetwork": "以太坊网络",
+  "connectWallet": "链接钱包",
+  "projectList": "项目列表",
+  "wrongNetwork": "网络错误",
+  "all": "全部",
+  "projectDescription": "项目简介",
+  "relatedLinks": "相关链接",
+  "officialWebsite": "官方网址",
+  "moreInformation": "更多信息",
+  "miningInformation": "挖矿信息",
+  "miningMortgageCurrency": "挖矿抵押币种",
+  "miningAddress": "挖矿地址",
+  "putMore": "收起更多",
+  "expandMore": "展开更多",
+  "projectInformation": "项目信息",
+  "totalTokens": "代币总量",
+  "tokenContractAddress": "代币合约地址",
+  "contractAudit": "合约审计",
+  "auditReport": "审计报告",
+  "proposal": "提案",
+  "newProposal": "新提案",
+  "thereArentAnyProposalsHereYet": "这里还没有任何建议！"
 }
