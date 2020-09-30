@@ -5,9 +5,9 @@
       <h3 v-text="_shorten(address)" />
     </div>
     <div class="m-4">
-      <a :href="_etherscanLink(address)" target="_blank" class="mb-2 d-block">
+      <a :href="_explorer(address)" target="_blank" class="mb-2 d-block">
         <UiButton class="button-outline width-full">
-          See on Etherscan
+          {{ $t('seeOnEtherscan') }}
           <Icon name="external-link" class="ml-1" />
         </UiButton>
       </a>

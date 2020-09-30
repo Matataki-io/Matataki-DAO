@@ -1,7 +1,7 @@
 <template>
   <Block
     v-if="Object.keys(votes).length > 0"
-    title="Votes"
+    :title="$t('votes')"
     :counter="Object.keys(votes).length"
     :slim="true"
   >
@@ -11,24 +11,27 @@
       :style="i === 0 && 'border: 0 !important;'"
       class="px-4 py-3 border-top d-flex"
     >
-      <User :address="address" :verified="namespace.verified" class="column" />
+      <User :address="address" :space="space" class="column" />
       <div
         v-text="proposal.msg.payload.choices[vote.msg.payload.choice - 1]"
         class="flex-auto text-center text-white"
       />
-      <div class="column text-right">
+      <div class="column text-right text-white">
         <span
-          v-text="
-            `${_numeral(vote.balance)} ${namespace.symbol ||
-              _shorten(namespace.token)}`
+          class="tooltipped tooltipped-n"
+          :aria-label="
+            vote.scores
+              .map((score, index) => `${_numeral(score)} ${titles[index]}`)
+              .join(' + ')
           "
-          class="text-white"
-        />
+        >
+          {{ `${_numeral(vote.balance)} ${_shorten(space.symbol, 'symbol')}` }}
+        </span>
         <a
           @click="openReceiptModal(vote)"
           target="_blank"
-          class="ml-3 text-gray"
-          title="Receipt"
+          class="ml-2 text-gray"
+          :title="$t('receipt')"
         >
           <Icon name="signature" />
         </a>
@@ -39,7 +42,7 @@
       @click="showAllVotes = true"
       class="px-4 py-3 border-top text-center d-block bg-gray-dark"
     >
-      See more
+      {{ $t('seeMore') }}
     </a>
     <ModalReceipt
       :open="modalReceiptOpen"
@@ -52,7 +55,7 @@
 
 <script>
 export default {
-  props: ['namespace', 'proposal', 'votes'],
+  props: ['space', 'proposal', 'votes'],
   data() {
     return {
       showAllVotes: false,
@@ -63,9 +66,13 @@ export default {
   },
   computed: {
     visibleVotes() {
-      return Object.fromEntries(
-        Object.entries(this.votes).slice(0, this.showAllVotes ? -1 : 10)
-      );
+      return this.showAllVotes
+        ? this.votes
+        : Object.fromEntries(Object.entries(this.votes).slice(0, 10));
+    },
+    titles() {
+      if (!this.space.strategies) return [this.space.symbol];
+      return this.space.strategies.map(strategy => strategy[1].symbol);
     }
   },
   methods: {

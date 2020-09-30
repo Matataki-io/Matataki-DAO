@@ -1,5 +1,12 @@
 <template>
   <Sticky class="mb-4">
+    <div
+      v-if="config.env === 'develop'"
+      class="p-3 text-center bg-blue"
+      style="color: white; font-size: 20px;"
+    >
+      {{ $t('thisIsTheDemoSiteGiveItATry') }}
+    </div>
     <nav id="topnav" class="border-bottom width-full bg-black">
       <Container>
         <div class="d-flex flex-items-center" style="height: 78px;">
@@ -10,42 +17,44 @@
               style="font-size: 24px; padding-top: 4px;"
             >
               <span
-                :class="namespace && 'hide-sm'"
+                :class="space && 'hide-sm'"
                 class="mr-1"
-                v-text="'snapshot'"
+                v-text="'499Dao'"
               />
-              <template v-if="namespace">
-                <span class="pl-1 pr-2 text-gray" v-text="'/'" />
-                <Token :address="namespace.image" size="28" />
-                <span class="ml-2" v-text="namespace.symbol" />
-              </template>
+              <span v-if="space" class="pl-1 pr-2 text-gray" v-text="'/'" />
+            </router-link>
+            <router-link
+              v-if="space"
+              :to="{ name: 'proposals' }"
+              class="d-inline-block d-flex flex-items-center"
+              style="font-size: 24px; padding-top: 4px;"
+            >
+              <Token :space="space.key" symbolIndex="space" size="28" />
+              <span class="ml-2" v-text="space.name" />
             </router-link>
           </div>
           <div :key="web3.account">
-            <template v-if="web3.account && !wrongNetwork">
+            <template v-if="$auth.isAuthenticated">
               <UiButton
                 @click="modalOpen = true"
                 class="button-outline"
                 :loading="loading"
               >
-                <Avatar :address="web3.account" size="16" class="mr-2 ml-n1" />
-                <span v-if="web3.name" v-text="web3.name" />
-                <span v-else v-text="_shorten(web3.account)" />
+                <Avatar
+                  :address="web3.account"
+                  size="16"
+                  class="mr-0 mr-sm-2 mr-md-2 mr-lg-2 mr-xl-2 ml-n1"
+                />
+                <span v-if="web3.name" v-text="web3.name" class="hide-sm" />
+                <span v-else v-text="_shorten(web3.account)" class="hide-sm" />
               </UiButton>
             </template>
             <UiButton
-              v-if="web3.injectedLoaded && wrongNetwork"
-              class="text-red"
-            >
-              <Icon name="warning" class="ml-n1 mr-1 v-align-middle" />
-              Wrong network
-            </UiButton>
-            <UiButton
-              v-if="showLogin"
+              v-if="!$auth.isAuthenticated"
               @click="modalOpen = true"
               :loading="loading"
             >
-              Connect wallet
+              {{ $t('connect') }}<span class="hide-sm" v-text="$t('wallet')" />
             </UiButton>
             <UiButton @click="modalAboutOpen = true" class="ml-2">
               <span v-text="'?'" class="ml-n1 mr-n1" />
@@ -65,7 +74,6 @@
 
 <script>
 import { mapActions } from 'vuex';
-import namespaces from '@/namespaces.json';
 
 export default {
   data() {
@@ -76,20 +84,11 @@ export default {
     };
   },
   computed: {
-    wrongNetwork() {
-      return this.config.chainId !== this.web3.injectedChainId;
-    },
-    showLogin() {
-      return (
-        (!this.web3.account && !this.web3.injectedLoaded) ||
-        (!this.web3.account && !this.wrongNetwork)
-      );
-    },
-    namespace() {
+    space() {
       try {
-        return namespaces[this.$route.params.key];
+        return this.web3.spaces[this.$route.params.key];
       } catch (e) {
-        return {};
+        return false;
       }
     }
   },

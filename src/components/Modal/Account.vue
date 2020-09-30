@@ -1,7 +1,7 @@
 <template>
   <UiModal :open="open" @close="$emit('close')">
     <div v-if="!web3.account || step === 'connect'">
-      <h3 class="m-4 mb-0 text-center">Connect wallet</h3>
+      <h3 class="m-4 mb-0 text-center">{{ $t('connectWallet') }}</h3>
       <div class="m-4 mb-5">
         <a
           v-for="(connector, id, i) in config.connectors"
@@ -25,13 +25,9 @@
       </div>
     </div>
     <div v-else>
-      <h3 class="m-4 mb-0 text-center">Account</h3>
-      <div v-if="web3.account" class="m-4">
-        <a
-          :href="_etherscanLink(web3.account)"
-          target="_blank"
-          class="mb-2 d-block"
-        >
+      <h3 class="m-4 mb-0 text-center">{{ $t('account') }}</h3>
+      <div v-if="$auth.isAuthenticated" class="m-4">
+        <a :href="_explorer(web3.account)" target="_blank" class="mb-2 d-block">
           <UiButton class="button-outline width-full">
             <Avatar :address="web3.account" size="16" class="mr-2 ml-n1" />
             <span v-if="web3.name" v-text="web3.name" />
@@ -43,13 +39,13 @@
           @click="step = 'connect'"
           class="button-outline width-full mb-2"
         >
-          Connect wallet
+          {{ $t('connectWallet') }}
         </UiButton>
         <UiButton
           @click="handleLogout"
           class="button-outline width-full text-red mb-2"
         >
-          Log out
+          {{ $t('logOut') }}
         </UiButton>
       </div>
     </div>
