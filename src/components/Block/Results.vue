@@ -1,5 +1,5 @@
 <template>
-  <Block :title="ts >= payload.end ? 'Results' : 'Current results'">
+  <Block :title="ts >= payload.end ? $t('results') : $t('currentResults')">
     <div v-for="(choice, i) in payload.choices" :key="i">
       <div class="text-white mb-1">
         <span v-text="_shorten(choice, 'choice')" class="mr-1" />
@@ -49,10 +49,10 @@
           height="26"
           style="margin-top: -4px;"
         />
-        Submit on-chain
+        {{$t('submitOnChain')}}
       </UiButton>
       <UiButton v-else @click="downloadReport" class="width-full mt-2">
-        Download report
+        {{$t('downloadReport')}}
       </UiButton>
     </div>
   </Block>
@@ -139,7 +139,7 @@ Callsscript: ${callsScript}`
         [callsScript, '0xbeef']
       ]);
       console.log(tx);
-      this.notify(['green', `The settlement is on-chain, congrats!`]);
+      this.notify(['green', this.$t('theSettlementIsOnChainCongrats')]);
       this.loading = false;
     }
   }

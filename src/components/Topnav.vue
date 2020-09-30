@@ -5,7 +5,7 @@
       class="p-3 text-center bg-blue"
       style="color: white; font-size: 20px;"
     >
-      This is the demo site, give it a try!
+      {{$t('thisIsTheDemoSiteGiveItATry')}}
     </div>
     <nav id="topnav" class="border-bottom width-full bg-black">
       <Container>
@@ -54,7 +54,7 @@
               @click="modalOpen = true"
               :loading="loading"
             >
-              Connect<span class="hide-sm" v-text="' wallet'" />
+              {{$t('connect')}}<span class="hide-sm" v-text="' wallet'" />
             </UiButton>
             <UiButton @click="modalAboutOpen = true" class="ml-2">
               <span v-text="'?'" class="ml-n1 mr-n1" />

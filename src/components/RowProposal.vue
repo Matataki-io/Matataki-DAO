@@ -12,16 +12,16 @@
     </div>
     <div>
       <span v-text="`#${i.slice(0, 7)}`" />
-      By {{ _shorten(proposal.address) }}
+      {{$t('by')}} {{ _shorten(proposal.address) }}
       <Badges :address="proposal.address" :space="space" class="ml-n1" />
       <span
         class="ml-1"
         v-text="`${_numeral(proposal.score)} ${space.symbol}`"
       />
-      <Icon v-if="isVerified" name="check" title="Verified" />
-      start
+      <Icon v-if="isVerified" name="check" :title="$t('verified')" />
+      {{$t('start')}}
       <span v-text="$d(proposal.msg.payload.start * 1e3)" />
-      end
+      {{$t('end')}}
       <span v-text="$d(proposal.msg.payload.end * 1e3)" />
     </div>
   </router-link>

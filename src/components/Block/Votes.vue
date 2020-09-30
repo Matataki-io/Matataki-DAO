@@ -1,7 +1,7 @@
 <template>
   <Block
     v-if="Object.keys(votes).length > 0"
-    title="Votes"
+    :title="$t('votes')"
     :counter="Object.keys(votes).length"
     :slim="true"
   >
@@ -31,7 +31,7 @@
           @click="openReceiptModal(vote)"
           target="_blank"
           class="ml-2 text-gray"
-          title="Receipt"
+          :title="$t('receipt')"
         >
           <Icon name="signature" />
         </a>
@@ -42,7 +42,7 @@
       @click="showAllVotes = true"
       class="px-4 py-3 border-top text-center d-block bg-gray-dark"
     >
-      See more
+      {{$t('seeMore')}}
     </a>
     <ModalReceipt
       :open="modalReceiptOpen"

@@ -1,6 +1,6 @@
 <template>
   <UiModal :open="open" @close="$emit('close')">
-    <h3 class="m-4 text-center">Plugins</h3>
+    <h3 class="m-4 text-center">{{$t('plugins')}}</h3>
     <div
       v-for="(plugin, i) in plugins"
       :key="i"
@@ -17,12 +17,12 @@
         <h3 v-text="plugin.name" />
         <div class="mb-2">
           <a :href="plugin.website" target="_blank" class="text-white">
-            Learn more
+            {{$t('learnMore')}}
             <Icon name="external-link" />
           </a>
         </div>
         <UiButton @click="selected = i">
-          {{ !form[i] ? 'Add' : 'Edit' }}
+          {{ !form[i] ? $t('add') : $t('edit') }}
         </UiButton>
       </div>
       <PluginAragon
@@ -36,7 +36,7 @@
     <div v-if="!selected" class="p-4 overflow-hidden text-center border-top">
       <div class="col-6 float-left pr-2">
         <UiButton @click="$emit('close')" type="button" class="width-full">
-          Cancel
+          {{$t('cancel')}}
         </UiButton>
       </div>
       <div class="col-6 float-left pl-2">
@@ -45,7 +45,7 @@
           type="submit"
           class="width-full button--submit"
         >
-          Save
+          {{$t('save')}}
         </UiButton>
       </div>
     </div>
