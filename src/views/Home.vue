@@ -274,8 +274,7 @@ export default {
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 72px;
-    height: 24px;
+    padding: 4px 10px;
     background: #e1f5f5;
     border-radius: 4px;
 

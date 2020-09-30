@@ -355,7 +355,7 @@ export default {
 }
 .bt-item {
   display: inline-block;
-  padding: 4px 11px;
+  padding: 4px 10px;
   background: #e1f5f5;
   border-radius: 4px;
   font-size: 12px;

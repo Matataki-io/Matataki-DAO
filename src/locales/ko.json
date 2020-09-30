@@ -79,5 +79,16 @@
   "votes": "투표",
   "wrongNetwork": "잘못된 네트워크",
   "yourVotingPower": "귀하의 투표권",
-  "community": "커뮤니티"
+  "community": "커뮤니티",
+  "actions": "행위",
+  "choices": "선택",
+  "informations": "정보",
+  "isIn": "있습니다!",
+  "oops": "죄송합니다",
+  "oopsSomethingWentWrong": "아차! 문제가 발생했습니다!",
+  "option": "선택권",
+  "question": "질문",
+  "snapshotBlockNumber": "스냅 샷 블록 번호",
+  "whatIsYourProposal": "당신의 제안은 무엇입니까?",
+  "your": "너의"
 }
