@@ -40,6 +40,7 @@
       <UiButton @click="modalAboutOpen = true" class="ml-2">
         <span v-text="'?'" class="ml-n1 mr-n1" />
       </UiButton>
+      <Language />
     </div>
     <ModalAccount
       :open="modalOpen"
