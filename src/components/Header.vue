@@ -35,7 +35,7 @@
         @click="modalOpen = true"
         :loading="loading"
       >
-        {{ $t('connectWallet') }}
+      {{$t('connect')}}<span class="hide-sm" v-text="$t('wallet')" />
       </button>
       <UiButton @click="modalAboutOpen = true" class="ml-2">
         <span v-text="'?'" class="ml-n1 mr-n1" />
@@ -129,8 +129,7 @@ export default {
   align-items: center;
 }
 .hb-connect {
-  width: 160px;
-  height: 40px;
+  padding: 8px 20px;
   background: #2eafb4;
   border-radius: 4px;
   font-size: 16px;
@@ -148,6 +147,9 @@ export default {
 }
 
 @media screen and (max-width: 750px) {
+  .header {
+    padding: 0 10px;
+  }
   .hl-logo {
     height: 24px;
   }

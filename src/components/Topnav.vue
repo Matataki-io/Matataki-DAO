@@ -54,7 +54,7 @@
               @click="modalOpen = true"
               :loading="loading"
             >
-              {{$t('connect')}}<span class="hide-sm" v-text="' wallet'" />
+              {{$t('connect')}}<span class="hide-sm" v-text="$t('wallet')" />
             </UiButton>
             <UiButton @click="modalAboutOpen = true" class="ml-2">
               <span v-text="'?'" class="ml-n1 mr-n1" />
