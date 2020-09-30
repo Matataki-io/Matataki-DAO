@@ -12,126 +12,159 @@
           />
         </section>
         <span class="b-title">{{ space.symbol }}</span>
-          <span class="b-description">{{ spaceInfo.brief }}</span>
-          <section class="b-tag">
-            <section class="bt-item">{{ $t('financialManagement') }}</section>
-          </section>
+        <span class="b-description">{{ spaceInfo.brief }}</span>
+        <section class="b-tag">
+          <section class="bt-item">{{ $t('financialManagement') }}</section>
+        </section>
       </section>
       <section class="container">
         <section class="c-head">
           <section class="ch-item">
-            <h3 class="i-title">{{$t('projectDescription')}}</h3>
-            <p class="i-description" :class="decriptionStatus && 'open'" v-text="spaceInfo.intro || '...'"></p>
-            <span class="i-more" @click="decriptionStatus = !decriptionStatus">{{ decriptionStatus ? $t('putMore') : $t('expandMore') }}</span>
+            <h3 class="i-title">{{ $t('projectDescription') }}</h3>
+            <p
+              class="i-description"
+              :class="decriptionStatus && 'open'"
+              v-text="spaceInfo.intro || '...'"
+            ></p>
+            <span
+              class="i-more"
+              @click="decriptionStatus = !decriptionStatus"
+              >{{ decriptionStatus ? $t('putMore') : $t('expandMore') }}</span
+            >
           </section>
           <section class="ch-item item-link">
-            <h3 class="i-title">{{$t('relatedLinks')}}</h3>
-            <p class="i-item" v-if="spaceInfo.website">
-              <span class="ii-name">{{$t('officialWebsite')}}</span>
-              <a class="ii-link" :href="spaceInfo.website" target="_blank">{{ spaceInfo.website }}</a>
-            </p>
-            <p class="i-item">
-              <span class="ii-name">{{$t('moreInformation')}}</span>
+            <h3 class="i-title">{{ $t('relatedLinks') }}</h3>
+            <section class="i-item" v-if="spaceInfo.website">
+              <span class="ii-name">{{ $t('officialWebsite') }}</span>
+              <a class="ii-link" :href="spaceInfo.website" target="_blank">{{
+                spaceInfo.website
+              }}</a>
+            </section>
+            <section class="i-item">
+              <span class="ii-name">{{ $t('moreInformation') }}</span>
               <section class="ii-share">
-                <a :href="val" v-for="(val, key) in spaceInfo.resource" :key="key" target="_blank">
-                  <img :src="resourceIcon(key)" alt="logo">
+                <a
+                  :href="val"
+                  v-for="(val, key) in spaceInfo.resource"
+                  :key="key"
+                  target="_blank"
+                >
+                  <img :src="resourceIcon(key)" alt="logo" />
                 </a>
               </section>
-            </p>
+            </section>
           </section>
           <section class="ch-item">
-            <h3 class="i-title">{{$t('miningInformation')}}</h3>
-            <p class="i-item">
-              <span class="ii-name">{{$t('miningMortgageCurrency')}}</span>
+            <h3 class="i-title">{{ $t('miningInformation') }}</h3>
+            <section class="i-item">
+              <span class="ii-name">{{ $t('miningMortgageCurrency') }}</span>
               <section class="ii-content">
-                <span v-for="(item, idx) in poolAddress" :key="idx" v-text="item" style="margin-right: 20px;"></span>
+                <span
+                  v-for="(item, idx) in poolAddress"
+                  :key="idx"
+                  v-text="item"
+                  style="margin-right: 20px;"
+                ></span>
               </section>
-            </p>
-            <p class="i-item">
-              <span class="ii-name">{{$t('miningAddress')}}</span>
-              <section class="ii-content iic-address" :class="infoStatus && 'open'">
+            </section>
+            <section class="i-item">
+              <span class="ii-name">{{ $t('miningAddress') }}</span>
+              <section
+                class="ii-content iic-address"
+                :class="infoStatus && 'open'"
+              >
                 <section v-for="(item, idx) in spaceInfo.mining" :key="idx">
-                  {{ item.pool }}<br>
-                  <a class="ii-link" target="_blank" :href="item.url">{{ item.url }}</a>
+                  {{ item.pool }}<br />
+                  <a class="ii-link" target="_blank" :href="item.url">{{
+                    item.url
+                  }}</a>
                 </section>
               </section>
-            </p>
-            <span class="i-more" @click="infoStatus = !infoStatus">{{ infoStatus ? $t('putMore') : $t('expandMore') }}</span>
-
+            </section>
+            <span class="i-more" @click="infoStatus = !infoStatus">{{
+              infoStatus ? $t('putMore') : $t('expandMore')
+            }}</span>
           </section>
           <section class="ch-item">
-            <h3 class="i-title">{{$t('projectInformation')}}</h3>
-            <p class="i-item" v-if="spaceInfo.totalsupply">
-              <span class="ii-name">{{$t('totalTokens')}}</span>
+            <h3 class="i-title">{{ $t('projectInformation') }}</h3>
+            <section class="i-item" v-if="spaceInfo.totalsupply">
+              <span class="ii-name">{{ $t('totalTokens') }}</span>
               <span class="ii-text">{{ spaceInfo.totalsupply }}</span>
-            </p>
-            <p class="i-item" v-if="space.address">
-              <span class="ii-name">{{$t('tokenContractAddress')}}</span>
+            </section>
+            <section class="i-item" v-if="space.address">
+              <span class="ii-name">{{ $t('tokenContractAddress') }}</span>
               <a class="ii-link" :href="space.address">{{ space.address }}</a>
-            </p>
-            <p class="i-item" v-if="spaceInfo.audit_agency">
-              <span class="ii-name">{{$t('contractAudit')}}</span>
+            </section>
+            <section class="i-item" v-if="spaceInfo.audit_agency">
+              <span class="ii-name">{{ $t('contractAudit') }}</span>
               <span class="ii-text">{{ spaceInfo.audit_agency }}</span>
-            </p>
-            <p class="i-item" v-if="spaceInfo.audit_report">
-              <span class="ii-name">{{$t('auditReport')}}</span>
-              <a class="ii-link" target="_blank" :href="spaceInfo.audit_report">{{ spaceInfo.audit_report }}</a>
-            </p>
+            </section>
+            <section class="i-item" v-if="spaceInfo.audit_report">
+              <span class="ii-name">{{ $t('auditReport') }}</span>
+              <a
+                class="ii-link"
+                target="_blank"
+                :href="spaceInfo.audit_report"
+                >{{ spaceInfo.audit_report }}</a
+              >
+            </section>
           </section>
         </section>
 
         <section class="proposals">
-      <Container class="p-head">
-        <div class="mb-3 d-flex">
-          <div class="flex-auto">
-            <div v-text="space.name" />
-            <div class="d-flex flex-items-center flex-auto">
-              <h2 class="mr-2">
-                {{$tc('proposal', 2)}}
-                <UiCounter :counter="totalProposals" class="ml-1" />
-              </h2>
+          <Container class="p-head">
+            <div class="mb-3 d-flex">
+              <div class="flex-auto">
+                <div v-text="space.name" />
+                <div class="d-flex flex-items-center flex-auto">
+                  <h2 class="mr-2">
+                    {{ $tc('proposal', 2) }}
+                    <UiCounter :counter="totalProposals" class="ml-1" />
+                  </h2>
+                </div>
+              </div>
+              <router-link
+                v-if="$auth.isAuthenticated"
+                :to="{ name: 'create' }"
+              >
+                <UiButton>{{ $t('newProposal') }}</UiButton>
+              </router-link>
             </div>
-          </div>
-          <router-link v-if="$auth.isAuthenticated" :to="{ name: 'create' }">
-            <UiButton>{{$t('newProposal')}}</UiButton>
-          </router-link>
-        </div>
-      </Container>
-      <Container :slim="true" class="p-content">
-        <Block :slim="true">
-          <div
-            class="px-4 py-3 bg-gray-dark overflow-auto menu-tabs rounded-top-0 rounded-md-top-2"
-          >
-            <router-link
-              v-for="state in states"
-              :key="state.value"
-              v-text="state.label"
-              :to="`/${key}/${state.value}`"
-              :class="selectedState === state.value && 'text-white'"
-              class="mr-3 text-gray tab"
-            />
-          </div>
-          <RowLoading v-if="loading" />
-          <div v-if="loaded">
-            <RowProposal
-              v-for="(proposal, i) in proposalsWithFilter"
-              :key="i"
-              :proposal="proposal"
-              :space="space"
-              :token="key"
-              :verified="space.verified"
-              :i="i"
-            />
-          </div>
-          <p
-            v-if="loaded && Object.keys(proposalsWithFilter).length === 0"
-            class="p-4 m-0 border-top d-block"
-          >
-            {{$t('thereArentAnyProposalsHereYet')}}
-          </p>
-        </Block>
-      </Container>
-
+          </Container>
+          <Container :slim="true" class="p-content">
+            <Block :slim="true">
+              <div
+                class="px-4 py-3 bg-gray-dark overflow-auto menu-tabs rounded-top-0 rounded-md-top-2"
+              >
+                <router-link
+                  v-for="state in states"
+                  :key="state.value"
+                  v-text="state.label"
+                  :to="`/${key}/${state.value}`"
+                  :class="selectedState === state.value && 'text-white'"
+                  class="mr-3 text-gray tab"
+                />
+              </div>
+              <RowLoading v-if="loading" />
+              <div v-if="loaded">
+                <RowProposal
+                  v-for="(proposal, i) in proposalsWithFilter"
+                  :key="i"
+                  :proposal="proposal"
+                  :space="space"
+                  :token="key"
+                  :verified="space.verified"
+                  :i="i"
+                />
+              </div>
+              <p
+                v-if="loaded && Object.keys(proposalsWithFilter).length === 0"
+                class="p-4 m-0 border-top d-block"
+              >
+                {{ $t('thereArentAnyProposalsHereYet') }}
+              </p>
+            </Block>
+          </Container>
         </section>
       </section>
       <Footer></Footer>
@@ -313,7 +346,6 @@ export default {
 };
 </script>
 
-
 <style lang="scss" scoped>
 .page {
   background-color: #eceff6;
@@ -419,6 +451,7 @@ export default {
 }
 .i-item {
   display: flex;
+  margin: 10px 0;
   .ii-name {
     flex-shrink: 0;
     font-size: 16px;

@@ -16,8 +16,8 @@ const mutations = {
 const actions = {
   init: async ({ commit, dispatch }) => {
     commit('SET', { loading: true });
-      try {
-        const connector = await Vue.prototype.$auth.getConnector();
+    try {
+      const connector = await Vue.prototype.$auth.getConnector();
       if (connector) {
         await dispatch('login', connector);
       } else {
@@ -26,7 +26,7 @@ const actions = {
       await dispatch('getBlockNumber');
       commit('SET', { loading: false, init: true });
     } catch (e) {
-      console.log('e', e)
+      console.log('e', e);
     }
   },
   loading: ({ commit }, payload) => {
