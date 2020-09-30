@@ -104,10 +104,10 @@
           >
             <router-link
               v-for="state in states"
-              :key="state"
-              v-text="state"
-              :to="`/${key}/${state}`"
-              :class="selectedState === state && 'text-white'"
+              :key="state.value"
+              v-text="state.label"
+              :to="`/${key}/${state.value}`"
+              :class="selectedState === state.value && 'text-white'"
               class="mr-3 text-gray tab"
             />
           </div>
@@ -180,16 +180,42 @@ export default {
       return this.web3.spacesInfo[this.key];
     },
     states() {
+      // const states = [
+      //   'all',
+      //   'core',
+      //   'community',
+      //   'active',
+      //   'pending',
+      //   'closed'
+      // ];
       const states = [
-        'all',
-        'core',
-        'community',
-        'active',
-        'pending',
-        'closed'
+        {
+          value: 'all',
+          label: this.$t('all')
+        },
+        {
+          value: 'core',
+          label: this.$t('core')
+        },
+        {
+          value: 'community',
+          label: this.$t('community')
+        },
+        {
+          value: 'active',
+          label: this.$t('active')
+        },
+        {
+          value: 'pending',
+          label: this.$t('pending')
+        },
+        {
+          value: 'closed',
+          label: this.$t('closed')
+        }
       ];
       return this.space.showOnlyCore
-        ? states.filter(state => !['core', 'community'].includes(state))
+        ? states.filter(state => !['core', 'community'].includes(state.value))
         : states;
     },
     totalProposals() {

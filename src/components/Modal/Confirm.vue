@@ -9,7 +9,7 @@
       </h4>
       <div class="m-4 p-4 border rounded-2 text-white">
         <div class="d-flex">
-          <span v-text="'Option'" class="flex-auto text-gray mr-1" />
+          <span v-text="$t('option')" class="flex-auto text-gray mr-1" />
           {{ proposal.msg.payload.choices[selectedChoice - 1] }}
         </div>
         <div class="d-flex">

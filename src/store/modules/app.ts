@@ -4,6 +4,7 @@ import ipfs from '@/helpers/ipfs';
 import providers from '@/helpers/providers';
 import { formatProposal, formatProposals } from '@/helpers/utils';
 import { version } from '@/../package.json';
+import i18n from "../../i18n";
 
 const mutations = {
   SEND_REQUEST() {
@@ -61,14 +62,14 @@ const actions = {
       msg.sig = await dispatch('signMessage', msg.msg);
       const result = await client.request('message', msg);
       commit('SEND_SUCCESS');
-      dispatch('notify', ['green', `Your ${type} is in!`]);
+      dispatch('notify', ['green', `${i18n.t('your')} ${type} ${i18n.t('isIn')}`]);
       return result;
     } catch (e) {
       commit('SEND_FAILURE', e);
       const errorMessage =
         e && e.error_description
-          ? `Oops, ${e.error_description}`
-          : 'Oops, something went wrong!';
+          ? `${i18n.t('oops')}, ${e.error_description}`
+          : `${i18n.t('oopsSomethingWentWrong')}`;
       dispatch('notify', ['red', errorMessage]);
       return;
     }

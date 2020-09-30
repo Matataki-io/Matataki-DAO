@@ -78,5 +78,17 @@
   "date": "date",
   "time": "time",
   "next": "Next",
-  "seeOnEtherscan": "See on Etherscan"
+  "seeOnEtherscan": "See on Etherscan",
+  "community": "community",
+  "question": "Question",
+  "whatIsYourProposal": "What is your proposal?",
+  "choices": "Choices",
+  "actions": "Actions",
+  "snapshotBlockNumber": "Snapshot block number",
+  "oops": "Oops",
+  "oopsSomethingWentWrong": "Oops, something went wrong!",
+  "your": "Your",
+  "isIn": "is in!",
+  "option": "Option",
+  "informations": "Informations"
 }

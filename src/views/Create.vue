@@ -1,7 +1,6 @@
 <template>
   <div>
     <Topnav />
-
     <Container :slim="true">
       <div class="px-4 px-md-0 mb-3">
         <router-link
@@ -21,13 +20,13 @@
                 v-model="form.name"
                 maxlength="128"
                 class="h1 mb-2 input"
-                placeholder="Question"
+                :placeholder="$t('question')"
               />
               <textarea-autosize
                 v-model="form.body"
                 maxlength="10240"
                 class="input mb-6"
-                placeholder="What is your proposal?"
+                :placeholder="$t('whatIsYourProposal')"
               />
               <div v-if="form.body">
                 <h4 class="mb-4">{{$t('preview')}}</h4>
@@ -35,7 +34,7 @@
               </div>
             </div>
           </div>
-          <Block title="Choices">
+          <Block :title="$t('choices')">
             <div v-if="choices.length > 0" class="overflow-hidden mb-2">
               <draggable v-model="choices">
                 <transition-group name="list">
@@ -65,21 +64,21 @@
         </div>
         <div class="col-12 col-lg-4 float-left">
           <Block
-            title="Actions"
+            :title="$t('actions')"
             :icon="web3.network.chainId === 4 ? 'stars' : undefined"
             @submit="modalPluginsOpen = true"
           >
             <div class="mb-2">
               <UiButton
                 @click="[(modalOpen = true), (selectedDate = 'start')]"
-                class="width-full mb-2"
+                class="width-full mb-2 overflow-button"
               >
                 <span v-if="!form.start">{{$t('selectStartDate')}}</span>
                 <span v-else v-text="$d(form.start * 1e3, 'long')" />
               </UiButton>
               <UiButton
                 @click="[(modalOpen = true), (selectedDate = 'end')]"
-                class="width-full mb-2"
+                class="width-full mb-2 overflow-button"
               >
                 <span v-if="!form.end">{{$t('selectEndDate')}}</span>
                 <span v-else v-text="$d(form.end * 1e3, 'long')" />
@@ -89,7 +88,7 @@
                   v-model="form.snapshot"
                   type="number"
                   class="input width-full text-center"
-                  placeholder="Snapshot block number"
+                  :placeholder="$t('snapshotBlockNumber')"
                 />
               </UiButton>
             </div>
@@ -226,5 +225,11 @@ export default {
 .list-enter,
 .list-leave-to {
   opacity: 0;
+}
+</style>
+
+<style scoped>
+.overflow-button {
+  overflow: hidden;
 }
 </style>

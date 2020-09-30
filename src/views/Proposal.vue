@@ -66,7 +66,7 @@
           />
         </div>
         <div v-if="loaded" class="col-12 col-lg-4 float-left">
-          <Block title="Informations">
+          <Block :title="$t('informations')">
             <div class="mb-1 overflow-hidden">
               <b>{{$t('token')}}</b>
               <span class="float-right text-white">

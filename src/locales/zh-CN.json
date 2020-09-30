@@ -78,5 +78,17 @@
   "verifyReceiptOnMycrypto": "在MyCrypto上验证收据",
   "version": "版",
   "votes": "投票数",
-  "yourVotingPower": "您的投票权"
+  "yourVotingPower": "您的投票权",
+  "community": "社区",
+  "question": "题",
+  "whatIsYourProposal": "你有什么建议？",
+  "choices": "选择项",
+  "actions": "动作",
+  "snapshotBlockNumber": "快照块号",
+  "oops": "哎呀",
+  "oopsSomethingWentWrong": "哎呀！出事了！",
+  "isIn": "在！",
+  "option": "选项",
+  "your": "你的",
+  "informations": "信息"
 }
