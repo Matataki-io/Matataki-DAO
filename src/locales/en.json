@@ -91,5 +91,6 @@
   "isIn": "is in!",
   "option": "Option",
   "informations": "Informations",
-  "wallet": "wallet"
+  "wallet": "wallet",
+  "pleaseToggleWalletNetwork": "Please switch the wallet network to the main Ethereum network"
 }

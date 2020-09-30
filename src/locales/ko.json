@@ -91,5 +91,6 @@
   "snapshotBlockNumber": "스냅 샷 블록 번호",
   "whatIsYourProposal": "당신의 제안은 무엇입니까?",
   "your": "너의",
-  "wallet": "지갑"
+  "wallet": "지갑",
+  "pleaseToggleWalletNetwork": "지갑 네트워크를 메인 이더 리움 네트워크로 전환하세요"
 }
