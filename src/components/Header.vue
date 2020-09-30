@@ -35,7 +35,9 @@
         @click="modalOpen = true"
         :loading="loading"
       >
-      {{$t('connect')}}<span class="hide-sm" v-text="$t('wallet')" />
+      {{$t('connect')}}
+      <span v-if="$i18n.locale === 'en'" class="hide-sm" style="margin-left: 4px;"></span>
+      <span class="hide-sm" v-text="$t('wallet')" />
       </button>
       <UiButton @click="modalAboutOpen = true" class="ml-2">
         <span v-text="'?'" class="ml-n1 mr-n1" />
