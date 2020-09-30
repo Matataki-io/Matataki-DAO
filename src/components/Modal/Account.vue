@@ -25,7 +25,7 @@
       </div>
     </div>
     <div v-else>
-      <h3 class="m-4 mb-0 text-center">{{$t('account')}}</h3>
+      <h3 class="m-4 mb-0 text-center">{{ $t('account') }}</h3>
       <div v-if="$auth.isAuthenticated" class="m-4">
         <a :href="_explorer(web3.account)" target="_blank" class="mb-2 d-block">
           <UiButton class="button-outline width-full">
@@ -45,7 +45,7 @@
           @click="handleLogout"
           class="button-outline width-full text-red mb-2"
         >
-          {{$t('logOut')}}
+          {{ $t('logOut') }}
         </UiButton>
       </div>
     </div>

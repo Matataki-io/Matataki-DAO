@@ -49,10 +49,10 @@
           height="26"
           style="margin-top: -4px;"
         />
-        {{$t('submitOnChain')}}
+        {{ $t('submitOnChain') }}
       </UiButton>
       <UiButton v-else @click="downloadReport" class="width-full mt-2">
-        {{$t('downloadReport')}}
+        {{ $t('downloadReport') }}
       </UiButton>
     </div>
   </Block>

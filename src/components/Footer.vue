@@ -15,7 +15,8 @@
           href="#"
           v-for="(item, idx) in linkItem"
           :key="idx"
-          target="_blank">
+          target="_blank"
+        >
           <img :src="item.src" alt="icon" />
         </a>
       </section>

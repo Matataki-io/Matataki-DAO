@@ -42,7 +42,7 @@
       @click="showAllVotes = true"
       class="px-4 py-3 border-top text-center d-block bg-gray-dark"
     >
-      {{$t('seeMore')}}
+      {{ $t('seeMore') }}
     </a>
     <ModalReceipt
       :open="modalReceiptOpen"

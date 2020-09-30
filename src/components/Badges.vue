@@ -1,6 +1,6 @@
 <template>
   <span>
-    <UiLabel v-if="isCore" class="ml-1">{{$t('core')}}</UiLabel>
+    <UiLabel v-if="isCore" class="ml-1">{{ $t('core') }}</UiLabel>
     <Icon v-if="isVerified" name="check" class="ml-1" :title="$t('verified')" />
   </span>
 </template>

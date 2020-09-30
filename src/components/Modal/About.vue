@@ -1,6 +1,6 @@
 <template>
   <UiModal :open="open" @close="$emit('close')">
-    <h3 class="m-4 text-center">{{$t('about')}}</h3>
+    <h3 class="m-4 text-center">{{ $t('about') }}</h3>
     <div class="text-center">
       <a href="https://twitter.com/SnapshotLabs" target="_blank">
         <Icon size="32" name="twitter" class="mr-1 mx-2" />

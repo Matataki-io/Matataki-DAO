@@ -44,7 +44,7 @@
                 {{ spaceInfo[space.key].brief }}
               </p>
               <section class="ti-btn">
-                <div>{{$t('financialManagement')}}</div>
+                <div>{{ $t('financialManagement') }}</div>
               </section>
             </section>
             <section class="ti-logo">
@@ -104,7 +104,7 @@ export default {
     ...mapActions([
       'loadFavoriteSpaces',
       'addFavoriteSpace',
-      'removeFavoriteSpace',
+      'removeFavoriteSpace'
     ]),
     toggleFavorite(spaceId) {
       if (this.favoriteSpaces.favorites[spaceId]) {
@@ -112,7 +112,7 @@ export default {
       } else {
         this.addFavoriteSpace(spaceId);
       }
-    },
+    }
   },
   created() {
     const domainName = window.location.hostname;

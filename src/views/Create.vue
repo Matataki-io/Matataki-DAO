@@ -29,7 +29,7 @@
                 :placeholder="$t('whatIsYourProposal')"
               />
               <div v-if="form.body">
-                <h4 class="mb-4">{{$t('preview')}}</h4>
+                <h4 class="mb-4">{{ $t('preview') }}</h4>
                 <UiMarkdown :body="form.body" />
               </div>
             </div>
@@ -58,7 +58,7 @@
               </draggable>
             </div>
             <UiButton @click="addChoice(1)" class="d-block width-full">
-              {{$t('addChoice')}}
+              {{ $t('addChoice') }}
             </UiButton>
           </Block>
         </div>
@@ -73,14 +73,14 @@
                 @click="[(modalOpen = true), (selectedDate = 'start')]"
                 class="width-full mb-2 overflow-button"
               >
-                <span v-if="!form.start">{{$t('selectStartDate')}}</span>
+                <span v-if="!form.start">{{ $t('selectStartDate') }}</span>
                 <span v-else v-text="$d(form.start * 1e3, 'long')" />
               </UiButton>
               <UiButton
                 @click="[(modalOpen = true), (selectedDate = 'end')]"
                 class="width-full mb-2 overflow-button"
               >
-                <span v-if="!form.end">{{$t('selectEndDate')}}</span>
+                <span v-if="!form.end">{{ $t('selectEndDate') }}</span>
                 <span v-else v-text="$d(form.end * 1e3, 'long')" />
               </UiButton>
               <UiButton class="width-full mb-2">
@@ -98,7 +98,7 @@
               :loading="loading"
               class="d-block width-full button--submit"
             >
-              {{$t('publish')}}
+              {{ $t('publish') }}
             </UiButton>
           </Block>
         </div>

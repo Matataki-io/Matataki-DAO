@@ -1,23 +1,23 @@
 import Vue from 'vue';
 import VueI18n from 'vue-i18n';
-import { getCookie } from "./cookie";
+import { getCookie } from './cookie';
 
 // @ts-ignore
-import zhCN from './locales/zh-CN'
+import zhCN from './locales/zh-CN';
 // @ts-ignore
-import en from './locales/en'
+import en from './locales/en';
 // @ts-ignore
-import ko from './locales/ko'
+import ko from './locales/ko';
 
 Vue.use(VueI18n);
 
-const locale = getCookie('language') || 'zh-CN'
+const locale = getCookie('language') || 'zh-CN';
 
 const messages = {
   'zh-CN': zhCN,
   en: en,
   ko: ko
-}
+};
 
 export default new VueI18n({
   locale,

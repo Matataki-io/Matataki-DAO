@@ -5,7 +5,7 @@
       class="p-3 text-center bg-blue"
       style="color: white; font-size: 20px;"
     >
-      {{$t('thisIsTheDemoSiteGiveItATry')}}
+      {{ $t('thisIsTheDemoSiteGiveItATry') }}
     </div>
     <nav id="topnav" class="border-bottom width-full bg-black">
       <Container>
@@ -54,7 +54,7 @@
               @click="modalOpen = true"
               :loading="loading"
             >
-              {{$t('connect')}}<span class="hide-sm" v-text="$t('wallet')" />
+              {{ $t('connect') }}<span class="hide-sm" v-text="$t('wallet')" />
             </UiButton>
             <UiButton @click="modalAboutOpen = true" class="ml-2">
               <span v-text="'?'" class="ml-n1 mr-n1" />

@@ -4,7 +4,7 @@
     <template v-else>
       <!-- <Topnav /> -->
       <!-- <div class="pb-6 overflow-hidden"> -->
-        <!-- <router-view :key="$route.path" class="flex-auto" /> -->
+      <!-- <router-view :key="$route.path" class="flex-auto" /> -->
       <!-- </div> -->
       <router-view :key="$route.path" />
     </template>
