@@ -3,7 +3,7 @@
     <Header></Header>
     <section class="banner">
       <img
-        src="@/assets/image/home-banner.png"
+        src="@/assets/image/home-banner.jpg"
         alt="banner"
         class="banner-img"
       />
