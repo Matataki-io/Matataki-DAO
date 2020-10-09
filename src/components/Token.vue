@@ -19,9 +19,10 @@ export default {
           ? 'space'
           : `logo${this.symbolIndex}`
         : 'logo';
-      return `https://raw.githubusercontent.com/Andoromeda-Foundation/snapshot-spaces/master/spaces/${String(
+      /* return `https://raw.githubusercontent.com/Andoromeda-Foundation/snapshot-spaces/master/spaces/${String(
         this.space
-      ).toLocaleLowerCase()}/${file}.png`;
+      ).toLocaleLowerCase()}/${file}.png`; */
+      return this.web3.spacesImg[file][this.space];
     }
   }
 };

@@ -5,6 +5,7 @@ import { Contract } from '@ethersproject/contracts';
 import { getAddress } from '@ethersproject/address';
 import spaces from '@/spaces';
 import spacesInfo from '@/spacesInfo';
+import spacesImg from '@/spacesImg';
 import store from '@/store';
 import abi from '@/helpers/abi';
 import config from '@/helpers/config';
@@ -28,6 +29,7 @@ const state = {
   blockNumber: 0,
   spaces: {},
   spacesInfo: {},
+  spacesImg: {},
   network: config.networks['1']
 };
 
@@ -55,6 +57,7 @@ const mutations = {
     Vue.set(_state, 'network', config.networks[chainId]);
     Vue.set(_state, 'spaces', spaces[chainId]);
     Vue.set(_state, 'spacesInfo', spacesInfo[chainId]);
+    Vue.set(_state, 'spacesImg', spacesImg);
     console.debug('HANDLE_CHAIN_CHANGED', chainId);
   },
   HANDLE_ACCOUNTS_CHANGED(_state, payload) {
