@@ -503,7 +503,10 @@ export default {
     max-height: none;
   }
 }
-
+.ii-content {
+  display: flex;
+  flex-wrap: wrap;
+}
 .ii-content,
 .ii-text {
   font-size: 16px;

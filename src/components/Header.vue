@@ -43,9 +43,16 @@
         ></span>
         <span class="hide-sm" v-text="$t('wallet')" />
       </button>
-      <UiButton @click="modalAboutOpen = true" class="ml-2">
-        <span v-text="'?'" class="ml-n1 mr-n1" />
-      </UiButton>
+      <div @click="modalAboutOpen = true" class="ml-2">
+        <img src="@/icons/q.svg" alt="" />
+      </div>
+      <a
+        href="https://www.yuque.com/aaplyazhoushequ/ig979g/wwek5t"
+        target="_blank"
+        class="ml-2"
+      >
+        <img src="@/icons/help.svg" alt="" />
+      </a>
       <Language />
     </div>
     <ModalAccount

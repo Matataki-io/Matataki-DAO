@@ -29,6 +29,9 @@
         >
           {{ item.label }}
         </a>
+        <a href="https://discord.gg/D8mfWvZ" target="_blank" class="cs-a">
+          <UiButton>{{ $t('newSpace') }}</UiButton>
+        </a>
       </section>
       <div v-for="(item, idx) in toggleItem" :key="idx">
         <section class="toggle-container" v-if="toggleItemActive === idx">
@@ -186,7 +189,7 @@ export default {
 .toggle {
   margin: 24px 0;
   display: flex;
-
+  justify-content: space-between;
   a {
     width: 16.6666%;
     height: 40px;
@@ -220,6 +223,14 @@ export default {
       &:hover {
         color: #fff !important;
       }
+    }
+  }
+  .cs-a {
+    width: auto;
+    background: transparent;
+    border-left: none;
+    button {
+      font-size: 14px;
     }
   }
 }
