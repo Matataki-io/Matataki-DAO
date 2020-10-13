@@ -199,23 +199,31 @@ export default {
   methods: {
     ...mapActions(['getProposal', 'getPower']),
     async loadProposal() {
-      const proposalObj = await this.getProposal({
-        space: this.space,
-        id: this.id
-      });
-      this.proposal = proposalObj.proposal;
-      this.votes = proposalObj.votes;
-      this.results = proposalObj.results;
+      try {
+        const proposalObj = await this.getProposal({
+          space: this.space,
+          id: this.id
+        });
+        this.proposal = proposalObj.proposal;
+        this.votes = proposalObj.votes;
+        this.results = proposalObj.results;
+      } catch (e) {
+        console.log('loadProposal error', e);
+      }
     },
     async loadPower() {
       if (!this.web3.account) return;
-      const { scores, totalScore } = await this.getPower({
-        space: this.space,
-        address: this.web3.account,
-        snapshot: this.payload.snapshot
-      });
-      this.totalScore = totalScore;
-      this.scores = scores;
+      try {
+        const { scores, totalScore } = await this.getPower({
+          space: this.space,
+          address: this.web3.account,
+          snapshot: this.payload.snapshot
+        });
+        this.totalScore = totalScore;
+        this.scores = scores;
+      } catch (e) {
+        console.log('loadPower error', e);
+      }
     }
   },
   async created() {
