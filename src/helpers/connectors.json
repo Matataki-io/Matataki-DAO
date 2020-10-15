@@ -23,7 +23,7 @@
     "name": "WalletConnect",
     "options": {
       "rpc": {
-        "1": "https://eth-mainnet.alchemyapi.io/v2/rXKbp7PTFm6hcrxU8NL-JGp5RMfRHDwg"
+        "1": "https://eth-mainnet.alchemyapi.io/v2/zXdbVD3rbD-qsbSg1_CsKW3I6kfVis5f"
       }
     }
   },
@@ -34,7 +34,7 @@
       "appName": "Snapshot",
       "darkMode": false,
       "chainId": 1,
-      "ethJsonrpcUrl": "https://eth-mainnet.alchemyapi.io/v2/rXKbp7PTFm6hcrxU8NL-JGp5RMfRHDwg"
+      "ethJsonrpcUrl": "https://eth-mainnet.alchemyapi.io/v2/zXdbVD3rbD-qsbSg1_CsKW3I6kfVis5f"
     }
   }
 }
