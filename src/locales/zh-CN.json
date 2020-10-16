@@ -93,5 +93,6 @@
   "your": "你的",
   "informations": "信息",
   "wallet": "钱包",
-  "pleaseToggleWalletNetwork": "请切换钱包网络为以太坊主网络"
+  "pleaseToggleWalletNetwork": "请切换钱包网络为以太坊主网络",
+  "Participateintheminimumholdings":"发起提案/参与投票最低持币数:"
 }

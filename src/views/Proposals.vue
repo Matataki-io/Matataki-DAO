@@ -116,12 +116,16 @@
             <div class="mb-3 d-flex">
               <div class="flex-auto">
                 <div v-text="space.name" />
+               
                 <div class="d-flex flex-items-center flex-auto">
                   <h2 class="mr-2">
                     {{ $tc('proposal', 2) }}
                     <UiCounter :counter="totalProposals" class="ml-1" />
                   </h2>
                 </div>
+                
+                 <div>{{ $t('Participateintheminimumholdings') +" "+space.min }}</div>
+                 <!-- <div v-text="space.min"></div> -->
               </div>
               <router-link
                 v-if="$auth.isAuthenticated"

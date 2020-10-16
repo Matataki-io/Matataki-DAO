@@ -93,5 +93,6 @@
   "option": "Option",
   "informations": "Informations",
   "wallet": "wallet",
-  "pleaseToggleWalletNetwork": "Please switch the wallet network to the main Ethereum network"
+  "pleaseToggleWalletNetwork": "Please switch the wallet network to the main Ethereum network",
+  "Participateintheminimumholdings":"Proposal initiated/participated in voting minimum holdings:"
 }
