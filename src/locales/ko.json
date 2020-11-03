@@ -40,7 +40,7 @@
   "moreInformation": "추가 정보",
   "network": "회로망",
   "newProposal": "새로운 제안",
-  "newSpace": "새로운 공간",
+  "newSpace": "Create Space",
   "next": "다음",
   "officialWebsite": "공식 웹 사이트",
   "pending": "보류 중",
@@ -93,5 +93,6 @@
   "whatIsYourProposal": "당신의 제안은 무엇입니까?",
   "your": "너의",
   "wallet": "지갑",
-  "pleaseToggleWalletNetwork": "지갑 네트워크를 메인 이더 리움 네트워크로 전환하세요"
+  "pleaseToggleWalletNetwork": "지갑 네트워크를 메인 이더 리움 네트워크로 전환하세요",
+  "Participateintheminimumholdings":"제안 시작 / 투표 참여를 위해 보유한 최소 코인 수:"
 }

@@ -15,7 +15,7 @@
   "putMore": "Put more",
   "proposal": "Proposal | Proposals",
   "newProposal": "New proposal",
-  "newSpace": "New Space",
+  "newSpace": "Create Space",
   "thereArentAnyProposalsHereYet": "There aren't any proposals here yet!",
   "auditReport": "Audit Report",
   "contractAudit": "Contract audit",
@@ -93,5 +93,6 @@
   "option": "Option",
   "informations": "Informations",
   "wallet": "wallet",
-  "pleaseToggleWalletNetwork": "Please switch the wallet network to the main Ethereum network"
+  "pleaseToggleWalletNetwork": "Please switch the wallet network to the main Ethereum network",
+  "Participateintheminimumholdings":"Proposal initiated/participated in voting minimum holdings:"
 }
