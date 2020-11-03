@@ -9,7 +9,7 @@ export class Providers {
   async setNetwork(chainId) {
     try {
       console.log('chainId', chainId);
-      if (chainId !== 1) {
+      if (chainId !== process.env.VUE_APP_CHAIN_ID) {
         alert(i18n.t('pleaseToggleWalletNetwork'));
       }
       const rpcUrl: any = networks[chainId].rpcUrl;

@@ -3,13 +3,13 @@
     <section class="f-container">
       <div>
         <img
-          src="@/assets/image/footer-logo.svg"
+          src="@/assets/image/footer-logo.png"
           alt="footer"
           class="footer-logo"
         />
-        <p class="f-text">&copy;2020 499DAO</p>
+        <!-- <p class="f-text">&copy;2020 499DAO</p> -->
       </div>
-      <section class="f-nav">
+      <!-- <section class="f-nav">
         <a
           class="fn-item"
           href="#"
@@ -19,7 +19,7 @@
         >
           <img :src="item.src" alt="icon" />
         </a>
-      </section>
+      </section> -->
     </section>
   </footer>
 </template>

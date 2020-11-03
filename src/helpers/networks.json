@@ -3,8 +3,8 @@
     "name": "Ethereum Mainnet",
     "chainId": 1,
     "network": "homestead",
-    "rpcUrl": "https://eth-mainnet.alchemyapi.io/v2/rXKbp7PTFm6hcrxU8NL-JGp5RMfRHDwg",
-    "wsUrl": "wss://eth-mainnet.ws.alchemyapi.io/v2/rXKbp7PTFm6hcrxU8NL-JGp5RMfRHDwg",
+    "rpcUrl": "https://eth-mainnet.alchemyapi.io/v2/WdQ1sPUBs6ba-sFVewu6fRwrrpr29nIY",
+    "wsUrl": "wss://eth-mainnet.ws.alchemyapi.io/v2/WdQ1sPUBs6ba-sFVewu6fRwrrpr29nIY",
     "explorer": "https://etherscan.io"
   },
   "4": {

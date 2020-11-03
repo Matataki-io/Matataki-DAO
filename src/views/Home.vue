@@ -3,19 +3,19 @@
     <Header></Header>
     <section class="banner">
       <img
-        src="@/assets/image/home-banner.jpg"
+        src="@/assets/image/home-banner.png"
         alt="banner"
         class="banner-img"
       />
     </section>
 
     <section class="container">
-      <section class="tab-head">
+      <!-- <section class="tab-head">
         <p class="th-title">{{ $t('ethereumNetwork') }}</p>
         <section class="th-line">
           <section class="thl-active"></section>
         </section>
-      </section>
+      </section> -->
       <section class="toggle">
         <a
           href="javascript:;"
@@ -29,30 +29,30 @@
         >
           {{ item.label }}
         </a>
-        <a href="https://discord.gg/D8mfWvZ" target="_blank" class="cs-a">
+        <a href="https://matataki.io/token" target="_blank" class="cs-a">
           <UiButton>{{ $t('newSpace') }}</UiButton>
         </a>
       </section>
       <div v-for="(item, idx) in toggleItem" :key="idx">
         <section class="toggle-container" v-if="toggleItemActive === idx">
           <router-link
-            :to="{ name: 'proposals', params: { key: space.key } }"
+            :to="{ name: 'proposals', params: { key: space.id } }"
             class="tc-item"
-            v-for="(space, idxChild) in spaces"
+            v-for="(space, idxChild) in list"
             :key="idxChild.address"
           >
             <section>
               <h4 class="ti-title">{{ space.symbol }}</h4>
               <p class="ti-des">
-                {{ spaceInfo[space.key].brief }}
+                {{ space.brief }}
               </p>
               <section class="ti-btn">
-                <div>{{ $t('financialManagement') }}</div>
+                <div>MEME</div>
               </section>
             </section>
             <section class="ti-logo">
-              <Token
-                :space="space.key"
+              <Logo
+                :space="space.logo"
                 symbolIndex="space"
                 size="40"
                 class="mb-3"
@@ -74,6 +74,7 @@ import domains from '@499dao/snapshot-spaces/spaces/domains.json';
 import create from '../icons/create.svg';
 
 export default {
+  name: 'Home',
   data() {
     return {
       create: create,
@@ -88,7 +89,8 @@ export default {
       ],
       projectListResult: {},
       pagesize: 10,
-      pageindex: 1
+      pageindex: 1,
+      list: []
     };
   },
   computed: {
@@ -107,7 +109,8 @@ export default {
     ...mapActions([
       'loadFavoriteSpaces',
       'addFavoriteSpace',
-      'removeFavoriteSpace'
+      'removeFavoriteSpace',
+      'getTokenList'
     ]),
     toggleFavorite(spaceId) {
       if (this.favoriteSpaces.favorites[spaceId]) {
@@ -127,6 +130,12 @@ export default {
         }
       });
     this.loadFavoriteSpaces();
+  },
+  async mounted() {
+    console.log('toklenlist');
+    const list = await this.getTokenList();
+    this.list = list.data.list;
+    console.log('list: ', list.data);
   }
 };
 </script>
@@ -154,7 +163,7 @@ export default {
 }
 
 .container {
-  width: 740px;
+  width: 900px;
   flex: 1;
   padding: 0 10px;
   margin: 0 auto;
@@ -182,7 +191,7 @@ export default {
   .thl-active {
     width: 120px;
     height: 4px;
-    background: #2eafb4;
+    background: #6236FF;
   }
 }
 
@@ -218,7 +227,7 @@ export default {
     }
 
     &.t-active {
-      background-color: #2eafb4;
+      background-color: #6236FF;
       color: #fff;
       &:hover {
         color: #fff !important;
@@ -237,7 +246,7 @@ export default {
 
 .toggle-container {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  grid-template-columns: repeat(3, 1fr);
   grid-column-gap: 24px;
   grid-row-gap: 24px;
   margin-bottom: 60px;
@@ -286,12 +295,12 @@ export default {
     align-items: center;
     justify-content: center;
     padding: 4px 10px;
-    background: #e1f5f5;
+    background: #E4DEFD;
     border-radius: 4px;
 
     font-size: 12px;
     font-weight: 500;
-    color: #2eafb4;
+    color: #6236FF;
     line-height: 17px;
 
     &:nth-child(1) {

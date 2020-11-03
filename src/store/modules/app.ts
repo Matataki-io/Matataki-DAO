@@ -81,6 +81,7 @@ const actions = {
     commit('GET_PROPOSALS_REQUEST');
     try {
       let proposals: any = await client.request(`${space.address}/proposals`);
+      console.log('proposals: ', proposals)
       if (proposals) {
         const defaultStrategies = [
           [
@@ -183,6 +184,7 @@ const actions = {
     }
   },
   getPower: async ({ commit, rootState }, { space, address, snapshot }) => {
+    console.log('space, address, snapshot: ', space, address, snapshot )
     commit('GET_POWER_REQUEST');
     try {
       const blockTag =

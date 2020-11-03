@@ -2,9 +2,9 @@
   <header class="header">
     <div class="h-logo">
       <router-link :to="{ name: 'home' }">
-        <img src="@/assets/image/logo.svg" alt="logo" class="hl-logo" />
+        <img src="@/assets/image/logo.png" alt="logo" class="hl-logo" />
       </router-link>
-      <h2 class="hl-title">{{ $t('projectList') }}</h2>
+      <!-- <h2 class="hl-title">{{ $t('projectList') }}</h2> -->
     </div>
     <div class="h-btn">
       <template v-if="$auth.isAuthenticated && !wrongNetwork">
@@ -43,17 +43,10 @@
         ></span>
         <span class="hide-sm" v-text="$t('wallet')" />
       </button>
-      <div @click="modalAboutOpen = true" class="ml-2">
-        <img src="@/icons/q.svg" alt="" />
-      </div>
-      <a
-        href="https://www.yuque.com/aaplyazhoushequ/ig979g/wwek5t"
-        target="_blank"
-        class="ml-2"
-      >
-        <img src="@/icons/help.svg" alt="" />
-      </a>
-      <Language />
+
+      <UiButton @click="modalAboutOpen = true" class="ml-2">
+        <span v-text="'?'" class="ml-n1 mr-n1" />
+      </UiButton>
     </div>
     <ModalAccount
       :open="modalOpen"
@@ -110,7 +103,7 @@ export default {
 .header {
   height: 60px;
   background: #ffffff;
-  box-shadow: 0px 2px 16px 0px rgba(0, 0, 0, 0.5);
+  /* box-shadow: 0px 2px 16px 0px rgba(0, 0, 0, 0.5); */
   display: flex;
   padding: 0 24px;
   align-items: center;
@@ -142,7 +135,7 @@ export default {
 }
 .hb-connect {
   padding: 8px 20px;
-  background: #2eafb4;
+  background: #6236FF;
   border-radius: 4px;
   font-size: 16px;
   font-weight: 500;

@@ -173,13 +173,14 @@ export default {
       modalOpen: false,
       selectedChoice: 0,
       totalScore: 0,
-      scores: []
+      scores: [],
+      space: {}
     };
   },
   computed: {
-    space() {
+    /* space() {
       return this.web3.spaces[this.key];
-    },
+    }, */
     payload() {
       return this.proposal.msg.payload;
     },
@@ -197,12 +198,13 @@ export default {
     }
   },
   methods: {
-    ...mapActions(['getProposal', 'getPower']),
+    ...mapActions(['getProposal', 'getPower', 'getTokenDetail']),
     async loadProposal() {
       const proposalObj = await this.getProposal({
         space: this.space,
         id: this.id
       });
+      console.log('proposalObj: ', proposalObj);
       this.proposal = proposalObj.proposal;
       this.votes = proposalObj.votes;
       this.results = proposalObj.results;
@@ -216,10 +218,20 @@ export default {
       });
       this.totalScore = totalScore;
       this.scores = scores;
+    },
+    async loadSpace() {
+      const tokenId = this.$route.params.key;
+      const detail = await this.getTokenDetail(tokenId);
+      this.space = {
+        decimals: 6,
+        name: detail.data.token.name,
+        address: detail.data.token.contract_address
+      };
     }
   },
   async created() {
     this.loading = true;
+    await this.loadSpace();
     await this.loadProposal();
     await this.loadPower();
     this.loading = false;

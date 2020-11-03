@@ -2,83 +2,169 @@
   <div>
     <section class="page">
       <Header></Header>
-      <section class="container">
-        <section class="t-left br-10 white-bg">
-          <Logo
-            :space="token.logo"
+      <section class="banner">
+        <section class="b-logo">
+          <Token
+            :space="space.key"
             symbolIndex="space"
-            size="100"
-            class="mb-3"
+            size="128"
+            class="mb-3 bl-token"
           />
-          <!-- <img src="@/assets/image/logo.png" alt="logo" /> -->
-          <h1>{{ token.symbol }}</h1>
-          <p>{{ token.brief }}</p>
-          <div class="tag">
-            <span v-for="(item, idx) in tags" :key="idx">{{ item.tag }}</span>
-          </div>
         </section>
-        <section class="t-right">
-          <section class="t-box br-10 white-bg">
-            <h1>项目简介</h1>
-            <p>
-              {{ token.introduction || '这里暂时没有介绍 Σ( ° △ °|||)︴' }}
-            </p>
+        <span class="b-title">{{ space.symbol }}</span>
+        <span class="b-description">{{ spaceInfo.brief }}</span>
+        <section class="b-tag">
+          <section class="bt-item">{{ $t('financialManagement') }}</section>
+        </section>
+      </section>
+      <section class="container">
+        <section class="c-head">
+          <section class="ch-item">
+            <h3 class="i-title">{{ $t('projectDescription') }}</h3>
+            <p
+              class="i-description"
+              :class="decriptionStatus && 'open'"
+              v-text="spaceInfo.intro || '...'"
+            ></p>
+            <span
+              class="i-more"
+              @click="decriptionStatus = !decriptionStatus"
+              >{{ decriptionStatus ? $t('putMore') : $t('expandMore') }}</span
+            >
           </section>
-          <section class="t-box proposals">
-            <Container class="p-head">
-              <div class="mb-3 d-flex">
-                <div class="flex-auto">
-                  <!-- <div v-text="token.name" /> -->
-                  <div class="d-flex flex-items-center flex-auto">
-                    <h2 class="mr-2">
-                      {{ $tc('proposal', 2) }}
-                      <UiCounter :counter="totalProposals" class="ml-1" />
-                    </h2>
-                  </div>
-                </div>
-                <router-link
-                  v-if="$auth.isAuthenticated"
-                  :to="{ name: 'create' }"
+          <section class="ch-item item-link">
+            <h3 class="i-title">{{ $t('relatedLinks') }}</h3>
+            <section class="i-item" v-if="spaceInfo.website">
+              <span class="ii-name">{{ $t('officialWebsite') }}</span>
+              <a class="ii-link" :href="spaceInfo.website" target="_blank">{{
+                spaceInfo.website
+              }}</a>
+            </section>
+            <section class="i-item">
+              <span class="ii-name">{{ $t('moreInformation') }}</span>
+              <section class="ii-share">
+                <a
+                  :href="val"
+                  v-for="(val, key) in spaceInfo.resource"
+                  :key="key"
+                  target="_blank"
                 >
-                  <UiButton>{{ $t('newProposal') }}</UiButton>
-                </router-link>
+                  <img :src="resourceIcon(key)" alt="logo" />
+                </a>
+              </section>
+            </section>
+          </section>
+          <section class="ch-item">
+            <h3 class="i-title">{{ $t('miningInformation') }}</h3>
+            <section class="i-item">
+              <span class="ii-name">{{ $t('miningMortgageCurrency') }}</span>
+              <section class="ii-content">
+                <span
+                  v-for="(item, idx) in poolAddress"
+                  :key="idx"
+                  v-text="item"
+                  style="margin-right: 20px;"
+                ></span>
+              </section>
+            </section>
+            <section class="i-item">
+              <span class="ii-name">{{ $t('miningAddress') }}</span>
+              <section
+                class="ii-content iic-address"
+                :class="infoStatus && 'open'"
+              >
+                <section v-for="(item, idx) in spaceInfo.mining" :key="idx">
+                  {{ item.pool }}<br />
+                  <a class="ii-link" target="_blank" :href="item.url">{{
+                    item.url
+                  }}</a>
+                </section>
+              </section>
+            </section>
+            <span class="i-more" @click="infoStatus = !infoStatus">{{
+              infoStatus ? $t('putMore') : $t('expandMore')
+            }}</span>
+          </section>
+          <section class="ch-item">
+            <h3 class="i-title">{{ $t('projectInformation') }}</h3>
+            <section class="i-item" v-if="spaceInfo.totalsupply">
+              <span class="ii-name">{{ $t('totalTokens') }}</span>
+              <span class="ii-text">{{ spaceInfo.totalsupply }}</span>
+            </section>
+            <section class="i-item" v-if="space.address">
+              <span class="ii-name">{{ $t('tokenContractAddress') }}</span>
+              <a class="ii-link" :href="space.address">{{ space.address }}</a>
+            </section>
+            <section class="i-item" v-if="spaceInfo.audit_agency">
+              <span class="ii-name">{{ $t('contractAudit') }}</span>
+              <span class="ii-text">{{ spaceInfo.audit_agency }}</span>
+            </section>
+            <section class="i-item" v-if="spaceInfo.audit_report">
+              <span class="ii-name">{{ $t('auditReport') }}</span>
+              <a
+                class="ii-link"
+                target="_blank"
+                :href="spaceInfo.audit_report"
+                >{{ spaceInfo.audit_report }}</a
+              >
+            </section>
+          </section>
+        </section>
+
+        <section class="proposals">
+          <Container class="p-head">
+            <div class="mb-3 d-flex">
+              <div class="flex-auto">
+                <div v-text="space.name" />
+                <div class="d-flex flex-items-center flex-auto">
+                  <h2 class="mr-2">
+                    {{ $tc('proposal', 2) }}
+                    <UiCounter :counter="totalProposals" class="ml-1" />
+                  </h2>
+                </div>
               </div>
-            </Container>
-            <Container :slim="true" class="p-content">
-              <Block :slim="true">
-                <div
-                  class="px-4 py-3 bg-gray-dark overflow-auto menu-tabs rounded-top-0 rounded-md-top-2"
-                >
-                  <router-link
-                    v-for="state in states"
-                    :key="state.value"
-                    v-text="state.label"
-                    :to="`/${key}/${state.value}`"
-                    :class="selectedState === state.value && 'text-white'"
-                    class="mr-3 text-gray tab"
-                  />
-                </div>
-                <RowLoading v-if="loading" />
-                <div v-if="loaded">
-                  <RowProposal
-                    v-for="(proposal, i) in proposalsWithFilter"
-                    :key="i"
-                    :proposal="proposal"
-                    :space="space"
-                    :token="key"
-                    :verified="space.verified"
-                    :i="i"
-                  />
-                </div>
-                <p
-                  v-if="loaded && Object.keys(proposalsWithFilter).length === 0"
-                  class="p-4 m-0 border-top d-block"
-                >
-                  {{ $t('thereArentAnyProposalsHereYet') }}
-                </p>
-              </Block>
-            </Container>
-          </section>
+              <router-link
+                v-if="$auth.isAuthenticated"
+                :to="{ name: 'create' }"
+              >
+                <UiButton>{{ $t('newProposal') }}</UiButton>
+              </router-link>
+            </div>
+          </Container>
+          <Container :slim="true" class="p-content">
+            <Block :slim="true">
+              <div
+                class="px-4 py-3 bg-gray-dark overflow-auto menu-tabs rounded-top-0 rounded-md-top-2"
+              >
+                <router-link
+                  v-for="state in states"
+                  :key="state.value"
+                  v-text="state.label"
+                  :to="`/${key}/${state.value}`"
+                  :class="selectedState === state.value && 'text-white'"
+                  class="mr-3 text-gray tab"
+                />
+              </div>
+              <RowLoading v-if="loading" />
+              <div v-if="loaded">
+                <RowProposal
+                  v-for="(proposal, i) in proposalsWithFilter"
+                  :key="i"
+                  :proposal="proposal"
+                  :space="space"
+                  :token="key"
+                  :verified="space.verified"
+                  :i="i"
+                />
+              </div>
+              <p
+                v-if="loaded && Object.keys(proposalsWithFilter).length === 0"
+                class="p-4 m-0 border-top d-block"
+              >
+                {{ $t('thereArentAnyProposalsHereYet') }}
+              </p>
+            </Block>
+          </Container>
         </section>
       </section>
       <Footer></Footer>
@@ -98,12 +184,8 @@ import github from '../icons/github-white.svg';
 import help from '../icons/help-white.svg';
 
 export default {
-  name: 'TokenDetail',
   data() {
     return {
-      tags: [],
-      token: {},
-      creator: {},
       twitter: twitter,
       facebook: facebook,
       telegram: telegram,
@@ -117,26 +199,28 @@ export default {
       proposalsResult: {},
       selectedState: 'all',
       decriptionStatus: false,
-      infoStatus: false,
-      space: {
-        core: [],
-        invalid: [],
-        min: 0
-      }
+      infoStatus: false
     };
   },
-
   computed: {
     key() {
       return this.$route.params.key;
     },
-    /* space() {
+    space() {
       return this.web3.spaces[this.key];
-    }, */
+    },
     spaceInfo() {
       return this.web3.spacesInfo[this.key];
     },
     states() {
+      // const states = [
+      //   'all',
+      //   'core',
+      //   'community',
+      //   'active',
+      //   'pending',
+      //   'closed'
+      // ];
       const states = [
         {
           value: 'all',
@@ -163,7 +247,9 @@ export default {
           label: this.$t('closed')
         }
       ];
-      return states;
+      return this.space.showOnlyCore
+        ? states.filter(state => !['core', 'community'].includes(state.value))
+        : states;
     },
     totalProposals() {
       return Object.keys(this.proposals).length;
@@ -174,11 +260,11 @@ export default {
       return Object.fromEntries(
         Object.entries(this.proposals)
           .filter(proposal => {
-            /* if (
+            if (
               this.space.showOnlyCore &&
               !this.space.core.includes(proposal[1].address)
             )
-              return false; */
+              return false;
 
             if (
               ['core', 'all'].includes(this.selectedState) &&
@@ -239,7 +325,7 @@ export default {
     }
   },
   methods: {
-    ...mapActions(['getTokenDetail', 'getProposals']),
+    ...mapActions(['getProposals']),
     resourceIcon(key) {
       if (key === 'twitter') return this.twitter;
       if (key === 'facebook') return this.facebook;
@@ -248,33 +334,12 @@ export default {
       if (key === 'medium') return this.medium;
       if (key === 'github') return this.github;
       else return this.help;
-    },
-    async loadSpace() {
-      const tokenId = this.$route.params.key;
-      const detail = await this.getTokenDetail(tokenId);
-      this.token = detail.data.token;
-      this.tags = detail.data.tags;
-      this.creator = detail.data.user;
-      this.space = {
-        decimals: 6,
-        name: detail.data.token.name,
-        address: detail.data.token.contract_address,
-        core: [],
-        invalid: [],
-        min: 0
-      };
     }
   },
   async created() {
     this.loading = true;
-
-    await this.loadSpace();
-    this.selectedState = this.$route.params.tab || 'all';
-    this.proposals = await this.getProposals({
-      decimals: 6,
-      address: this.token.contract_address
-    });
-    console.log('proposals', this.proposals);
+    this.selectedState = this.$route.params.tab || this.space.defaultView;
+    this.proposals = await this.getProposals(this.space);
     this.loading = false;
     this.loaded = true;
   }
@@ -282,68 +347,8 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.container {
-  width: 1000px;
-  display: flex;
-  align-items: flex-start;
-  margin-top: 20px;
-  padding: 0 20px;
-  box-sizing: border-box;
-  margin: 20px auto;
-  color: #333333;
-  .br-10 {
-    border-radius: 10px;
-  }
-  .white-bg {
-    background: #fff;
-  }
-  .t-left {
-    margin-right: 20px;
-    height: auto;
-    position: sticky;
-    top: 0;
-    padding: 20px;
-    flex: 1;
-    text-align: center;
-    img {
-      width: 64px;
-      border-radius: 100px;
-    }
-    h1 {
-      font-size: 24px;
-    }
-    p {
-      font-size: 14px;
-    }
-    .tag {
-      span {
-        background-color: #e4defd;
-        color: #542de0;
-        font-size: 12px;
-        padding: 5px;
-        border-radius: 4px;
-        margin-right: 10px;
-      }
-    }
-  }
-  .t-right {
-    flex: 4;
-    .t-box {
-      padding: 20px;
-      margin-bottom: 20px;
-      h1 {
-        font-size: 20px;
-        line-height: 30px;
-        margin-bottom: 16px;
-      }
-      p {
-        font-size: 16px;
-      }
-    }
-  }
-}
 .page {
-  background-color: #f1f1f1;
+  background-color: #eceff6;
   height: 100%;
 }
 .banner {
@@ -390,6 +395,13 @@ export default {
   color: #6236FF;
   line-height: 17px;
   margin: 0 8px;
+}
+
+.container {
+  max-width: 1200px;
+  padding: 0 20px;
+  box-sizing: border-box;
+  margin: 0 auto;
 }
 
 .c-head {

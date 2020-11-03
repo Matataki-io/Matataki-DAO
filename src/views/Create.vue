@@ -146,13 +146,14 @@ export default {
       modalOpen: false,
       modalPluginsOpen: false,
       selectedDate: '',
-      counter: 0
+      counter: 0,
+      space: {}
     };
   },
   computed: {
-    space() {
+    /* space() {
       return this.web3.spaces[this.key];
-    },
+    }, */
     isValid() {
       // const ts = (Date.now() / 1e3).toFixed();
       return (
@@ -170,11 +171,17 @@ export default {
       );
     }
   },
-  mounted() {
+  async mounted() {
     this.addChoice(2);
+    const tokenId = this.$route.params.key;
+    const detail = await this.getTokenDetail(tokenId);
+    this.space = {
+      name: detail.data.token.name,
+      address: detail.data.token.contract_address
+    };
   },
   methods: {
-    ...mapActions(['send']),
+    ...mapActions(['send', 'getTokenDetail']),
     addChoice(num) {
       for (let i = 1; i <= num; i++) {
         this.counter++;
