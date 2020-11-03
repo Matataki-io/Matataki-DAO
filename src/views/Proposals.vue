@@ -166,7 +166,8 @@ export default {
       return states;
     },
     totalProposals() {
-      return Object.keys(this.proposals).length;
+      return 0;
+      // return Object.keys(this.proposals).length;
     },
     proposalsWithFilter() {
       const ts = (Date.now() / 1e3).toFixed();
