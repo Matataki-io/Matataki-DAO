@@ -81,6 +81,7 @@ const actions = {
     commit('GET_PROPOSALS_REQUEST');
     try {
       let proposals: any = await client.request(`${space.address}/proposals`);
+      console.log('proposals: ', proposals)
       if (proposals) {
         const defaultStrategies = [
           [
@@ -88,12 +89,7 @@ const actions = {
             { address: space.address, decimals: space.decimals }
           ]
         ];
-        const scores: any = await getScores(
-          space.strategies || defaultStrategies,
-          rootState.web3.network.chainId,
-          providers.rpc,
-          Object.values(proposals).map((proposal: any) => proposal.address)
-        );
+        const scores: any = []
         proposals = Object.fromEntries(
           Object.entries(proposals).map((proposal: any) => {
             proposal[1].score = scores.reduce(
