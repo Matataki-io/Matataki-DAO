@@ -81,7 +81,6 @@ const actions = {
     commit('GET_PROPOSALS_REQUEST');
     try {
       let proposals: any = await client.request(`${space.address}/proposals`);
-      console.log('proposals: ', proposals)
       if (proposals) {
         const defaultStrategies = [
           [
