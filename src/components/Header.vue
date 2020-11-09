@@ -2,7 +2,12 @@
   <header class="header">
     <div class="h-logo">
       <router-link :to="{ name: 'home' }">
-        <img src="@/assets/image/logo.png" alt="logo" class="hl-logo" />
+        <img src="@/assets/image/logo-img.png" alt="logo" class="hl-logo" />
+        <img
+          src="@/assets/image/logo-text.png"
+          alt="logo"
+          class="hl-logo-text"
+        />
       </router-link>
       <!-- <h2 class="hl-title">{{ $t('projectList') }}</h2> -->
     </div>
@@ -116,6 +121,10 @@ export default {
 }
 .hl-logo {
   height: 40px;
+  color: #000;
+}
+.hl-logo-text {
+  height: 20px;
   color: #000;
 }
 .hl-title {

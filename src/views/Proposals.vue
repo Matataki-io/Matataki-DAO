@@ -24,6 +24,47 @@
               {{ token.introduction || '这里暂时没有介绍 Σ( ° △ °|||)︴' }}
             </p>
           </section>
+          <section class="ch-item item-link">
+            <h3 class="i-title">{{ $t('relatedLinks') }}</h3>
+            <section class="i-item" v-if="spaceInfo.website">
+              <span class="ii-name">{{ $t('officialWebsite') }}</span>
+              <a class="ii-link" :href="spaceInfo.website" target="_blank">{{
+                spaceInfo.website
+              }}</a>
+            </section>
+            <section class="i-item">
+              <span class="ii-name">{{ $t('moreInformation') }}</span>
+              <section class="ii-share">
+                <a
+                  :href="val"
+                  v-for="(val, key) in spaceInfo.resource"
+                  :key="key"
+                  target="_blank"
+                >
+                  <img :src="resourceIcon(key)" alt="logo" />
+                </a>
+              </section>
+            </section>
+          </section>
+          <section class="t-box br-10 white-bg i-item">
+            <h1>相关链接</h1>
+            <section class="ii-share">
+              <!-- <a
+                :href="val"
+                v-for="(val, key) in spaceInfo.resource"
+                :key="key"
+                target="_blank"
+              >
+                <img :src="resourceIcon(key)" alt="logo" />
+              </a> -->
+            </section>
+          </section>
+          <!-- <section class="t-box br-10 white-bg">
+            <h1>相关链接</h1>
+            <p>
+              {{ token.introduction || '这里暂时没有介绍 Σ( ° △ °|||)︴' }}
+            </p>
+          </section> -->
           <section class="t-box proposals">
             <Container class="p-head">
               <div class="mb-3 d-flex">
@@ -122,6 +163,10 @@ export default {
         core: [],
         invalid: [],
         min: 0
+      },
+      spaceInfo: {
+        website: '',
+        resource: []
       }
     };
   },
@@ -133,9 +178,9 @@ export default {
     /* space() {
       return this.web3.spaces[this.key];
     }, */
-    spaceInfo() {
+    /* spaceInfo() {
       return this.web3.spacesInfo[this.key];
-    },
+    }, */
     states() {
       const states = [
         {
@@ -239,7 +284,7 @@ export default {
     }
   },
   methods: {
-    ...mapActions(['getTokenDetail', 'getProposals']),
+    ...mapActions(['getTokenDetail', 'getProposals', 'getTokenResources']),
     resourceIcon(key) {
       if (key === 'twitter') return this.twitter;
       if (key === 'facebook') return this.facebook;
@@ -263,12 +308,22 @@ export default {
         invalid: [],
         min: 0
       };
+    },
+    async loadResources() {
+      const tokenId = this.$route.params.key;
+      const r = await this.getTokenResources(tokenId);
+      if (r.websites.length > 0) {
+        this.spaceInfo.website = r.websites[0].url;
+      }
+      this.spaceInfo.resource = 
+      console.log(r);
     }
   },
   async created() {
     this.loading = true;
 
     await this.loadSpace();
+    await this.loadResources();
     this.selectedState = this.$route.params.tab || 'all';
     this.proposals = await this.getProposals({
       decimals: 6,

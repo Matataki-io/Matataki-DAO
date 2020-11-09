@@ -17,7 +17,7 @@
         </section>
       </section> -->
       <section class="toggle">
-        <a
+        <!-- <a
           href="javascript:;"
           @click="toggleItemActive = idx"
           v-for="(item, idx) in toggleItem"
@@ -28,7 +28,7 @@
           ]"
         >
           {{ item.label }}
-        </a>
+        </a> -->
         <a href="https://matataki.io/token" target="_blank" class="cs-a">
           <UiButton>{{ $t('newSpace') }}</UiButton>
         </a>
@@ -254,7 +254,7 @@ export default {
 
 .tc-item {
   background: #ffffff;
-  border-radius: 4px;
+  border-radius: 10px;
   display: flex;
   justify-content: space-between;
   padding: 24px;

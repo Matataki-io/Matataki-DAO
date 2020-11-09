@@ -20,6 +20,14 @@ const actions = {
       console.log(e)
     }
   },
+  getTokenResources: async ({ commit, rootState }, id) => {
+    try {
+      const r: any = await client.request(`/minetoken/${id}/resources`);
+      return r.data
+    } catch (e) {
+      console.log(e)
+    }
+  },
 };
 
 export default {

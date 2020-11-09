@@ -3,11 +3,16 @@
     <section class="f-container">
       <div>
         <img
-          src="@/assets/image/footer-logo.png"
+          src="@/assets/image/logo-img.png"
           alt="footer"
           class="footer-logo"
         />
-        <!-- <p class="f-text">&copy;2020 499DAO</p> -->
+        <img
+          src="@/assets/image/MATATAKIDAO.png"
+          alt="footer"
+          class="footer-logo-text"
+        />
+        <p class="f-text">&copy; 2018 - 2020 MATATAKI DAO All Rights Served</p>
       </div>
       <!-- <section class="f-nav">
         <a
@@ -51,7 +56,7 @@ export default {
 
   box-sizing: border-box;
   height: 214px;
-  background-color: #000;
+  background-color: #B2B2B2;
 }
 .f-container {
   max-width: 1200px;
@@ -66,11 +71,14 @@ export default {
   height: 50px;
   color: #fff;
 }
+.footer-logo-text {
+  height: 20px;
+}
 .f-text {
   color: #fff;
   font-size: 18px;
   padding: 0;
-  margin: 2px 0 0 0;
+  margin: 50px 0 0 0;
   line-height: 20px;
 }
 
