@@ -301,7 +301,7 @@ export default {
       this.tags = detail.data.tags;
       this.creator = detail.data.user;
       this.space = {
-        decimals: 6,
+        decimals: detail.data.token.decimals,
         name: detail.data.token.name,
         address: detail.data.token.contract_address,
         core: [],
@@ -315,8 +315,6 @@ export default {
       if (r.websites.length > 0) {
         this.spaceInfo.website = r.websites[0].url;
       }
-      this.spaceInfo.resource = 
-      console.log(r);
     }
   },
   async created() {
@@ -326,7 +324,7 @@ export default {
     await this.loadResources();
     this.selectedState = this.$route.params.tab || 'all';
     this.proposals = await this.getProposals({
-      decimals: 6,
+      decimals: this.token.decimals,
       address: this.token.contract_address
     });
     console.log('proposals', this.proposals);

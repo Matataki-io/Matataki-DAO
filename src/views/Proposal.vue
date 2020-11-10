@@ -62,6 +62,7 @@
             v-if="loaded"
             :space="space"
             :proposal="proposal"
+            :qv="quadratic"
             :votes="votes"
           />
         </div>
@@ -128,6 +129,12 @@
                   <Icon name="external-link" class="ml-1" />
                 </a>
               </div>
+              <div class="mb-1">
+                <b>是否二次方投票</b>
+                <span class="float-right text-white tooltipped tooltipped-n">
+                  {{ quadratic ? '是' : '否' }}
+                </span>
+              </div>
             </div>
           </Block>
           <BlockResults
@@ -135,6 +142,7 @@
             :space="space"
             :payload="payload"
             :results="results"
+            :qv="quadratic"
             :votes="votes"
           />
         </div>
@@ -190,6 +198,9 @@ export default {
     symbols() {
       if (!this.space.strategies) return [this.space.symbol];
       return this.space.strategies.map(strategy => strategy[1].symbol);
+    },
+    quadratic() {
+      return this.proposal.msg.payload.quadratic;
     }
   },
   watch: {
@@ -218,14 +229,16 @@ export default {
       });
       this.totalScore = totalScore;
       this.scores = scores;
+      console.log({ scores, totalScore })
     },
     async loadSpace() {
       const tokenId = this.$route.params.key;
       const detail = await this.getTokenDetail(tokenId);
       this.space = {
-        decimals: 6,
+        decimals: detail.data.token.decimals,
         name: detail.data.token.name,
-        address: detail.data.token.contract_address
+        address: detail.data.token.contract_address,
+        symbol: detail.data.token.symbol
       };
     }
   },

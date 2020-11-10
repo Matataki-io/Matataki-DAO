@@ -55,7 +55,7 @@
 
 <script>
 export default {
-  props: ['space', 'proposal', 'votes'],
+  props: ['space', 'proposal', 'qv', 'votes'],
   data() {
     return {
       showAllVotes: false,

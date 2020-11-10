@@ -117,7 +117,8 @@ const actions = {
       result.proposal = formatProposal(proposal);
       result.proposal.ipfsHash = payload.id;
       result.votes = votes;
-      const { snapshot } = result.proposal.msg.payload;
+      const { snapshot, quadratic } = result.proposal.msg.payload;
+      console.log('{ snapshot, quadratic }: ', { snapshot, quadratic })
       const blockTag =
         snapshot > rootState.web3.blockNumber ? 'latest' : parseInt(snapshot);
       const defaultStrategies = [
@@ -135,7 +136,7 @@ const actions = {
           providers.rpc,
           Object.keys(result.votes),
           // @ts-ignore
-          blockTag
+          'latest'
         );
       } catch (e) {
         console.log('getScores error', e);
@@ -163,7 +164,10 @@ const actions = {
         totalBalances: result.proposal.msg.payload.choices.map((choice, i) =>
           Object.values(result.votes)
             .filter((vote: any) => vote.msg.payload.choice === i + 1)
-            .reduce((a, b: any) => a + b.balance, 0)
+            .reduce((a: any, b: any) => {
+              let other = quadratic ? Math.floor(Math.sqrt(b.balance)) : b.balance
+              return a + other
+            }, 0)
         ),
         totalScores: result.proposal.msg.payload.choices.map((choice, i) =>
           spaceStrategies.map((strategy, sI) =>
@@ -173,7 +177,10 @@ const actions = {
           )
         ),
         totalVotesBalances: Object.values(result.votes).reduce(
-          (a, b: any) => a + b.balance,
+          (a: any, b: any) => {
+            let other = quadratic ? Math.floor(Math.sqrt(b.balance)) : b.balance
+            return a + other
+          },
           0
         )
       };
@@ -203,7 +210,7 @@ const actions = {
           providers.rpc,
           [address],
           // @ts-ignore
-          blockTag
+          'latest'
         );
       } catch (e) {
         console.log('getScores error', e);

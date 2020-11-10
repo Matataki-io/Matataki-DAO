@@ -91,6 +91,22 @@
                   :placeholder="$t('snapshotBlockNumber')"
                 />
               </UiButton>
+              <UiButton class="width-full mb-2">
+                <input
+                  type="radio"
+                  id="false"
+                  :value="false"
+                  v-model="form.quadratic"
+                />
+                <label for="false">No QV</label>
+                <input
+                  type="radio"
+                  id="true"
+                  :value="true"
+                  v-model="form.quadratic"
+                />
+                <label for="true">QV</label>
+              </UiButton>
             </div>
             <UiButton
               @click="handleSubmit"
@@ -141,7 +157,8 @@ export default {
         start: '',
         end: '',
         snapshot: '',
-        metadata: {}
+        metadata: {},
+        quadratic: false
       },
       modalOpen: false,
       modalPluginsOpen: false,

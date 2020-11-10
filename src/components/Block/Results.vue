@@ -65,7 +65,7 @@ import plugins from '@/helpers/plugins';
 import pkg from '@/../package.json';
 
 export default {
-  props: ['id', 'space', 'payload', 'results', 'votes'],
+  props: ['id', 'space', 'payload', 'results', 'qv', 'votes'],
   data() {
     return {
       loading: false
