@@ -12,7 +12,7 @@
           "
         >
           {{ _numeral(results.totalBalances[i]) }}
-          {{ _shorten(space.symbol, 'symbol') }}
+          <!-- {{ _shorten(space.symbol, 'symbol') }} -->
         </span>
         <span
           class="float-right"

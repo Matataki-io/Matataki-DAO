@@ -165,7 +165,7 @@ const actions = {
           Object.values(result.votes)
             .filter((vote: any) => vote.msg.payload.choice === i + 1)
             .reduce((a: any, b: any) => {
-              let other = quadratic ? Math.floor(Math.sqrt(b.balance)) : b.balance
+              const other = quadratic ? Math.floor(Math.sqrt(b.balance)) : b.balance
               return a + other
             }, 0)
         ),
@@ -178,7 +178,7 @@ const actions = {
         ),
         totalVotesBalances: Object.values(result.votes).reduce(
           (a: any, b: any) => {
-            let other = quadratic ? Math.floor(Math.sqrt(b.balance)) : b.balance
+            const other = quadratic ? Math.floor(Math.sqrt(b.balance)) : b.balance
             return a + other
           },
           0
