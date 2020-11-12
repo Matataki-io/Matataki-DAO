@@ -122,15 +122,16 @@ const actions = {
       const blockTag =
         snapshot > rootState.web3.blockNumber ? 'latest' : parseInt(snapshot);
       const defaultStrategies = [
-        [
-          'erc20-balance-of',
-          { address: payload.space.address, decimals: payload.space.decimals }
-        ]
+        {
+          name: 'erc20-balance-of',
+          params: { address: payload.space.address, decimals: payload.space.decimals }
+        }
       ];
       const spaceStrategies = payload.space.strategies || defaultStrategies;
       let scores: any = [{}];
       try {
         scores = await getScores(
+          'space',
           spaceStrategies,
           rootState.web3.network.chainId,
           providers.rpc,
@@ -197,19 +198,21 @@ const actions = {
       const blockTag =
         snapshot > rootState.web3.blockNumber ? 'latest' : parseInt(snapshot);
       const defaultStrategies = [
-        [
-          'erc20-balance-of',
-          { address: space.address, decimals: space.decimals }
-        ]
+        {
+          name: 'erc20-balance-of',
+          params: { address: space.address, decimals: space.decimals }
+        }
       ];
       let scores: any = [{}];
       try {
         scores = await getScores(
+          'space',
           space.strategies || defaultStrategies,
           rootState.web3.network.chainId,
           providers.rpc,
           [address],
           // @ts-ignore
+          'latest'
         );
       } catch (e) {
         console.log('getScores error', e);
