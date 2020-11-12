@@ -210,7 +210,6 @@ const actions = {
           providers.rpc,
           [address],
           // @ts-ignore
-          'latest'
         );
       } catch (e) {
         console.log('getScores error', e);
