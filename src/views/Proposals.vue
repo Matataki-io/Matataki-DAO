@@ -401,7 +401,7 @@ export default {
 }
 .banner {
   height: 324px;
-  background: #6236FF;
+  background: #6236ff;
   overflow: hidden;
   text-align: center;
   display: flex;
@@ -440,7 +440,7 @@ export default {
   border-radius: 4px;
   font-size: 12px;
   font-weight: 500;
-  color: #6236FF;
+  color: #6236ff;
   line-height: 17px;
   margin: 0 8px;
 }
@@ -469,7 +469,7 @@ export default {
 .i-more {
   font-size: 16px;
   font-weight: 400;
-  color: #6236FF;
+  color: #6236ff;
   line-height: 22px;
   padding: 0;
   margin: 0;
@@ -505,7 +505,7 @@ export default {
   .ii-link {
     font-size: 16px;
     font-weight: 500;
-    color: #6236FF;
+    color: #6236ff;
     line-height: 22px;
     padding: 0;
     margin: 0;
@@ -523,7 +523,7 @@ export default {
     height: 32px;
     border-radius: 100%;
     overflow: hidden;
-    background-color: #6236FF;
+    background-color: #6236ff;
     margin-left: 24px;
     &:nth-child(1) {
       margin-left: 0;

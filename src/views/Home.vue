@@ -34,11 +34,15 @@
         </a>
       </section>
       <div v-for="(item, idx) in toggleItem" :key="idx">
-        <section class="toggle-container" v-if="toggleItemActive === idx">
+        <section
+          class="toggle-container"
+          v-if="toggleItemActive === idx"
+          v-loading="loading"
+        >
           <router-link
             :to="{ name: 'proposals', params: { key: space.id } }"
             class="tc-item"
-            v-for="(space, idxChild) in list"
+            v-for="(space, idxChild) in tokenData.list"
             :key="idxChild.address"
           >
             <section>
@@ -61,6 +65,15 @@
           </router-link>
         </section>
       </div>
+      <div class="pagination">
+        <el-pagination
+          background
+          layout="prev, pager, next"
+          :page-size="pagesize"
+          :total="tokenData.count"
+          @current-change="handleCurrentChange"
+        ></el-pagination>
+      </div>
     </section>
     <Footer></Footer>
   </div>
@@ -72,6 +85,7 @@ import orderBy from 'lodash/orderBy';
 import homepage from '@499dao/snapshot-spaces/spaces/homepage.json';
 import domains from '@499dao/snapshot-spaces/spaces/domains.json';
 import create from '../icons/create.svg';
+import { isEmpty } from 'lodash';
 
 export default {
   name: 'Home',
@@ -88,9 +102,14 @@ export default {
         }
       ],
       projectListResult: {},
-      pagesize: 10,
-      pageindex: 1,
-      list: []
+      pagesize: 12,
+      page: 1,
+      list: [],
+      tokenData: {
+        count: 0,
+        list: []
+      },
+      loading: false
     };
   },
   computed: {
@@ -118,6 +137,25 @@ export default {
       } else {
         this.addFavoriteSpace(spaceId);
       }
+    },
+    // 处理当前分页改变
+    handleCurrentChange(page) {
+      this.page = page;
+      this.getTokenListFn();
+    },
+    // 获取 token 列表数据
+    async getTokenListFn() {
+      this.loading = true;
+      const list = await this.getTokenList({
+        page: this.page,
+        pagesize: this.pagesize
+      });
+      if (!isEmpty(list)) {
+        this.list = list.data.list;
+        this.tokenData = list.data;
+        // console.log('list: ', list.data);
+      }
+      this.loading = false;
     }
   },
   created() {
@@ -131,11 +169,8 @@ export default {
       });
     this.loadFavoriteSpaces();
   },
-  async mounted() {
-    console.log('toklenlist');
-    const list = await this.getTokenList();
-    this.list = list.data.list;
-    console.log('list: ', list.data);
+  mounted() {
+    this.getTokenListFn();
   }
 };
 </script>
@@ -191,7 +226,7 @@ export default {
   .thl-active {
     width: 120px;
     height: 4px;
-    background: #6236FF;
+    background: #6236ff;
   }
 }
 
@@ -227,7 +262,7 @@ export default {
     }
 
     &.t-active {
-      background-color: #6236FF;
+      background-color: #6236ff;
       color: #fff;
       &:hover {
         color: #fff !important;
@@ -295,12 +330,12 @@ export default {
     align-items: center;
     justify-content: center;
     padding: 4px 10px;
-    background: #E4DEFD;
+    background: #e4defd;
     border-radius: 4px;
 
     font-size: 12px;
     font-weight: 500;
-    color: #6236FF;
+    color: #6236ff;
     line-height: 17px;
 
     &:nth-child(1) {

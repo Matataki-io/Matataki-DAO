@@ -1,33 +1,37 @@
 import client from '@/helpers/mttkClient';
 
-const mutations = {
-};
+const mutations = {};
 
 const actions = {
   getTokenList: async ({ commit, rootState }, space) => {
+    // console.log('space', space);
     try {
-      const proposals: any = await client.request(`token/all?page=1&pagesize=100&search=`);
-      return proposals
+      const { page, pagesize } = space;
+      const proposals: any = await client.request(
+        `token/all?page=${page}&pagesize=${pagesize}`
+      );
+      return proposals;
     } catch (e) {
-      console.log(e)
+      console.log(e);
+      return;
     }
   },
   getTokenDetail: async ({ commit, rootState }, id) => {
     try {
       const token: any = await client.request(`minetoken/${id}`);
-      return token
+      return token;
     } catch (e) {
-      console.log(e)
+      console.log(e);
     }
   },
   getTokenResources: async ({ commit, rootState }, id) => {
     try {
-      const r: any = await client.request(`/minetoken/${id}/resources`);
-      return r.data
+      const r: any = await client.request(`minetoken/${id}/resources`);
+      return r.data;
     } catch (e) {
-      console.log(e)
+      console.log(e);
     }
-  },
+  }
 };
 
 export default {

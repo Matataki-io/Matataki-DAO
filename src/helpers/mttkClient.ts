@@ -1,7 +1,7 @@
 class Client {
   request(command, body?) {
     const url = `${process.env.VUE_APP_MTTK_API}/${command}`;
-    console.log(url)
+    console.log(url);
     let init;
     if (body) {
       init = {

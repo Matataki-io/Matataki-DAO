@@ -1,5 +1,6 @@
 <template>
   <img
+    v-if="space"
     :src="url"
     class="d-inline-block v-align-middle line-height-0 circle border"
     :style="{
