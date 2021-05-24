@@ -56,7 +56,7 @@ export default {
 
   box-sizing: border-box;
   height: 214px;
-  background-color: #B2B2B2;
+  background-color: #b2b2b2;
 }
 .f-container {
   max-width: 1200px;

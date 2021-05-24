@@ -144,7 +144,7 @@ export default {
 }
 .hb-connect {
   padding: 8px 20px;
-  background: #6236FF;
+  background: #6236ff;
   border-radius: 4px;
   font-size: 16px;
   font-weight: 500;

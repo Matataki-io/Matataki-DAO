@@ -81,7 +81,7 @@ const actions = {
     commit('GET_PROPOSALS_REQUEST');
     try {
       let proposals: any = await client.request(`${space.address}/proposals`);
-      console.log('proposals: ', proposals)
+      console.log('proposals: ', proposals);
       if (proposals) {
         const defaultStrategies = [
           [
@@ -89,7 +89,7 @@ const actions = {
             { address: space.address, decimals: space.decimals }
           ]
         ];
-        const scores: any = []
+        const scores: any = [];
         proposals = Object.fromEntries(
           Object.entries(proposals).map((proposal: any) => {
             proposal[1].score = scores.reduce(
@@ -118,13 +118,16 @@ const actions = {
       result.proposal.ipfsHash = payload.id;
       result.votes = votes;
       const { snapshot, quadratic } = result.proposal.msg.payload;
-      console.log('{ snapshot, quadratic }: ', { snapshot, quadratic })
+      console.log('{ snapshot, quadratic }: ', { snapshot, quadratic });
       const blockTag =
         snapshot > rootState.web3.blockNumber ? 'latest' : parseInt(snapshot);
       const defaultStrategies = [
         {
           name: 'erc20-balance-of',
-          params: { address: payload.space.address, decimals: payload.space.decimals }
+          params: {
+            address: payload.space.address,
+            decimals: payload.space.decimals
+          }
         }
       ];
       const spaceStrategies = payload.space.strategies || defaultStrategies;
@@ -166,8 +169,10 @@ const actions = {
           Object.values(result.votes)
             .filter((vote: any) => vote.msg.payload.choice === i + 1)
             .reduce((a: any, b: any) => {
-              const other = quadratic ? Math.floor(Math.sqrt(b.balance)) : b.balance
-              return a + other
+              const other = quadratic
+                ? Math.floor(Math.sqrt(b.balance))
+                : b.balance;
+              return a + other;
             }, 0)
         ),
         totalScores: result.proposal.msg.payload.choices.map((choice, i) =>
@@ -179,8 +184,10 @@ const actions = {
         ),
         totalVotesBalances: Object.values(result.votes).reduce(
           (a: any, b: any) => {
-            const other = quadratic ? Math.floor(Math.sqrt(b.balance)) : b.balance
-            return a + other
+            const other = quadratic
+              ? Math.floor(Math.sqrt(b.balance))
+              : b.balance;
+            return a + other;
           },
           0
         )
@@ -192,7 +199,7 @@ const actions = {
     }
   },
   getPower: async ({ commit, rootState }, { space, address, snapshot }) => {
-    console.log('space, address, snapshot: ', space, address, snapshot )
+    console.log('space, address, snapshot: ', space, address, snapshot);
     commit('GET_POWER_REQUEST');
     try {
       const blockTag =

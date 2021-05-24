@@ -229,7 +229,7 @@ export default {
       });
       this.totalScore = totalScore;
       this.scores = scores;
-      console.log({ scores, totalScore })
+      console.log({ scores, totalScore });
     },
     async loadSpace() {
       const tokenId = this.$route.params.key;

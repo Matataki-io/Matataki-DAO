@@ -1,4 +1,3 @@
-
 const path = require('path');
 const requireSpaceImg = require.context(
   '@499dao/snapshot-spaces/spaces/',
@@ -10,7 +9,6 @@ const requireLogoImg = require.context(
   true,
   /logo\.png$/
 );
-
 
 const spaceImgsObj = {};
 requireSpaceImg.keys().map(file => {
@@ -34,7 +32,6 @@ requireLogoImg.keys().map(file => {
 });
 console.log('requireSpaceImg', spaceImgsObj);
 console.log('requireLogoImg', logoImgsObj);
-
 
 export default {
   space: spaceImgsObj,
