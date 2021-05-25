@@ -4,18 +4,25 @@
       <Header></Header>
       <section class="container">
         <section class="t-left br-10 white-bg">
-          <Logo
-            :space="token.logo"
-            symbolIndex="space"
-            size="100"
-            class="mb-3"
-          />
-          <!-- <img src="@/assets/image/logo.png" alt="logo" /> -->
-          <h1>{{ token.symbol }}</h1>
-          <p>{{ token.brief }}</p>
-          <div class="tag">
-            <span v-for="(item, idx) in tags" :key="idx">{{ item.tag }}</span>
-          </div>
+          <a
+            :href="`https://www.matataki.io/token/${$route.params.key}`"
+            target="_blank"
+            class="token-link"
+          >
+            <Logo
+              :space="token.logo"
+              symbolIndex="space"
+              size="100"
+              class="mb-3"
+            />
+            <!-- <img src="@/assets/image/logo.png" alt="logo" /> -->
+
+            <h1>{{ token.symbol }}</h1>
+            <p>{{ token.brief }}</p>
+            <div class="tag">
+              <span v-for="(item, idx) in tags" :key="idx">{{ item.tag }}</span>
+            </div>
+          </a>
         </section>
         <section class="t-right">
           <section class="t-box br-10 white-bg">
@@ -649,5 +656,9 @@ export default {
     grid-column-gap: 14px;
     grid-row-gap: 14px;
   }
+}
+
+.token-link {
+  display: block;
 }
 </style>

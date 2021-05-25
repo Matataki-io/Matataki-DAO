@@ -19,7 +19,7 @@
               <span
                 :class="space && 'hide-sm'"
                 class="mr-1"
-                v-text="'499Dao'"
+                v-text="'Matataki DAO'"
               />
               <span v-if="space" class="pl-1 pr-2 text-gray" v-text="'/'" />
             </router-link>
